@@ -1,7 +1,8 @@
-package kg.bishkoteka
+package kg.bishkoteka.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import kg.bishkoteka.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
