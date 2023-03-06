@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Bishkoteka</string>
+    <string name="password">Пароль</string>
+    <string name="e_mail">E-mail</string>
+    <string name="confirm_password">Подтвердить пароль</string>
+    <string name="phone_number">Дата рождения</string>
+    <string name="username">Username</string>
+    <string name="name">Имя</string>
+    <string name="sign_up">Регистрация</string>
+    <string name="already_have_an_account_sign_in">Уже есть аккаунт? Войти</string>
+    <string name="sign_in">Войти</string>
+    <string name="don_t_have_an_account_sign_up">Ещё не зарегестрированы? Регистрация</string>
+    <string name="birth_date">2023-03-06</string>
+    <string name="last_name">Фамилия</string>
 </resources>

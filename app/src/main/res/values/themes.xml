@@ -13,4 +13,31 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="DefaultButton">
+        <item name="android:layout_width">200dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:backgroundTint">#FFFF0054</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/sf_ui_display_semibold</item>
+<!--        <item name="color">#FFFF0054</item>-->
+<!--        <item name="colorPrimary">#FFFF0054</item>-->
+<!--        <item name="colorAccent">#FFFF0054</item>-->
+<!--        <item name="colorOnPrimary">#FFFF0054</item>-->
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+    <style name="Title">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">@font/sf_ui_display_heavy</item>
+    </style>
+
+    <style name="DefaultEditText">
+        <item name="backgroundTint">@color/white</item>
+        <item name="borderWidth">2dp</item>
+<!--        <item name="background">@drawable/default_edit_text</item>-->
+    </style>
+
+
 </resources>
