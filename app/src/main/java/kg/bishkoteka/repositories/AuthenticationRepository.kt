@@ -1,9 +1,9 @@
-package kg.bishkoteka.data.repositories
+package kg.bishkoteka.repositories
 
 import kg.bishkoteka.data.base.BaseRepository
-import kg.bishkoteka.data.remote.apiservice.AuthenticationApiService
-import kg.bishkoteka.data.remote.dto.SignInDto
-import kg.bishkoteka.data.remote.dto.SignUpDto
+import kg.bishkoteka.remote.apiservice.AuthenticationApiService
+import kg.bishkoteka.remote.dto.SignInDto
+import kg.bishkoteka.remote.dto.SignUpDto
 import javax.inject.Inject
 
 class AuthenticationRepository @Inject constructor(
@@ -32,7 +32,7 @@ class AuthenticationRepository @Inject constructor(
         )
     }
 
-    fun signIn(email: String, password: String) = makeNetworkRequest {
-        authenticationApiService.login(SignInDto(email, password))
+    fun signIn(username: String, password: String) = makeNetworkRequest {
+        authenticationApiService.login(SignInDto(username, password))
     }
 }

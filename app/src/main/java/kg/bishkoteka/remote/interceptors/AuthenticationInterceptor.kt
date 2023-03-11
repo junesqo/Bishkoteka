@@ -1,4 +1,4 @@
-package kg.bishkoteka.data.remote.interceptors
+package kg.bishkoteka.remote.interceptors
 
 import kg.bishkoteka.data.local.preferences.UserPreferences
 import okhttp3.Interceptor

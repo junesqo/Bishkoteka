@@ -2,7 +2,6 @@ package kg.bishkoteka.data.base
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.project.ulul.data.base.BasePagingResponse
 import retrofit2.Response
 
 abstract class BasePagingSource<Value : Any>(

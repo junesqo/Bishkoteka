@@ -1,6 +1,6 @@
 package kg.bishkoteka.di
 
-import kg.bishkoteka.data.remote.NetworkClient
+import kg.bishkoteka.remote.NetworkClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,6 +13,13 @@ object RemoteModule {
 
     @Singleton
     @Provides
-    fun generateAuthenticationApiService(networkClient: NetworkClient) =
+    fun generateAuthenticationApiService(networkClient: NetworkClient.AuthenticationNetworkClient) =
         networkClient.generateAuthenticationApiService()
+
+    @Singleton
+    @Provides
+    fun generateRefreshAccessTokensApiService(networkClient: NetworkClient.AuthenticationNetworkClient) =
+        networkClient.generateRefreshAccessTokenApiService()
 }
+
+

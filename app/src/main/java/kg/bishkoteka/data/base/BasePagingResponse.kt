@@ -1,4 +1,4 @@
-package com.project.ulul.data.base
+package kg.bishkoteka.data.base
 
 data class BasePagingResponse<T>(
     val count: Int,
@@ -7,4 +7,4 @@ data class BasePagingResponse<T>(
     val results: List<T>
 )
 
-//Дефольный запрос на пагинацию
+//Дефолтный запрос на пагинацию

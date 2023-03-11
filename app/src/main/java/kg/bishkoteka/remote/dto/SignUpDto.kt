@@ -1,4 +1,4 @@
-package kg.bishkoteka.data.remote.dto
+package kg.bishkoteka.remote.dto
 
 import com.google.gson.annotations.SerializedName
 

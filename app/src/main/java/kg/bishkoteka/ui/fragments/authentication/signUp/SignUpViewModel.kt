@@ -1,7 +1,7 @@
 package kg.bishkoteka.ui.fragments.authentication.signUp
 
 import kg.bishkoteka.core.base.BaseViewModel
-import kg.bishkoteka.data.repositories.AuthenticationRepository
+import kg.bishkoteka.repositories.AuthenticationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
