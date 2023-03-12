@@ -1,9 +1,9 @@
 package kg.bishkoteka.ui.fragments.authentication.signIn
 
 import kg.bishkoteka.core.base.BaseViewModel
-import kg.bishkoteka.repositories.AuthenticationRepository
+import kg.bishkoteka.data.repositories.AuthenticationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kg.bishkoteka.remote.dto.SignInResultDto
+import kg.bishkoteka.data.remote.dto.auth.SignInResultDto
 import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 

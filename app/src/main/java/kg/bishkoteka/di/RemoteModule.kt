@@ -1,6 +1,6 @@
 package kg.bishkoteka.di
 
-import kg.bishkoteka.remote.NetworkClient
+import kg.bishkoteka.data.remote.NetworkClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

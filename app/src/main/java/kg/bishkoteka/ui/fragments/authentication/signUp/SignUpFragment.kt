@@ -17,7 +17,7 @@ class SignUpFragment :
     override val binding by viewBinding(FragmentSignUpBinding::bind)
     override val viewModel by viewModels<SignUpViewModel>()
 
-    override fun constructListeners() {
+    override fun initListeners() {
         binding.btnSignUp.setOnClickListener {
             viewModel.signUp(
                 binding.etName.text.toString(),
@@ -34,7 +34,7 @@ class SignUpFragment :
         }
     }
 
-    override fun launchObservers() {
+    override fun initSubscribers() {
         viewModel.signUpState.spectateUiState(success = {
             Toast.makeText(requireContext(), "ok", Toast.LENGTH_SHORT).show()
         }, error = {

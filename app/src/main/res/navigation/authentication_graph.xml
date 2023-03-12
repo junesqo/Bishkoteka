@@ -20,7 +20,16 @@
         android:label="SignInFragment"
         tools:layout="@layout/fragment_sign_in" >
         <action
-            android:id="@+id/action_signInFragment_to_signUpFragment"
+            android:id="@+id/action_signInFragment_to_chooseAccountTypeFragment"
+            app:destination="@id/chooseAccountTypeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseAccountTypeFragment"
+        android:name="kg.bishkoteka.ui.fragments.authentication.chooseTypeOfAccount.ChooseAccountTypeFragment"
+        android:label="ChooseAccountTypeFragment"
+        tools:layout="@layout/fragment_choose_account_type" >
+        <action
+            android:id="@+id/action_chooseAccountTypeFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
     </fragment>
 </navigation>

@@ -28,7 +28,7 @@ class SplashScreenFragment :
     @Inject
     lateinit var userPreferences: UserPreferences
 
-    override fun constructListeners() {
+    override fun initListeners() {
 
         //TODO: Поменять ГлобалСкоуп на что-то менее ресурсо-затратное
         GlobalScope.launch {

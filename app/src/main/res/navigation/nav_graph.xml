@@ -11,11 +11,13 @@
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen">
         <action
+            app:exitAnim="@animator/nav_default_exit_anim"
             app:destination="@id/mainFlowFragment"
             app:popUpTo="@id/splashScreenFragment"
             app:popUpToInclusive="true"
             android:id="@+id/action_splashScreenFragment_to_mainFlowFragment" />
         <action
+            app:exitAnim="@animator/nav_default_exit_anim"
             app:destination="@id/authenticationFlowFragment"
             app:popUpTo="@id/splashScreenFragment"
             app:popUpToInclusive="true"

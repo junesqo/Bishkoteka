@@ -22,7 +22,7 @@ class SignInFragment :
     @Inject
     lateinit var userPreferences: UserPreferences
 
-    override fun constructListeners() {
+    override fun initListeners() {
         binding.btnSignIn.setOnClickListener {
             viewModel.signIn(
                 binding.etUsername.text.toString(),
@@ -30,16 +30,14 @@ class SignInFragment :
             )
         }
         binding.tvSignUp.setOnClickListener {
-            findNavController().navigateSafely(R.id.action_signInFragment_to_signUpFragment)
+            findNavController().navigateSafely(R.id.action_signInFragment_to_chooseAccountTypeFragment)
         }
     }
 
-    override fun launchObservers() {
+    override fun initSubscribers() {
         viewModel.signInState.spectateUiState(success = {
             userPreferences.accessToken = it.access
             userPreferences.refreshToken = it.refresh
-//            userPreferences.accessToken = getAuthenticationToken(it.tokens, true)
-//            userPreferences.refreshToken = getAuthenticationToken(it.tokens, false)
             //TODO: поменять на true
             userPreferences.isAuthenticated = false
             activityNavController().navigateSafely(R.id.action_authenticationFlowFragment_to_mainFlowFragment)
@@ -47,25 +45,4 @@ class SignInFragment :
             Toast.makeText(requireContext(), "ne ok", Toast.LENGTH_SHORT).show()
         })
     }
-
-//    private fun getAuthenticationToken(
-//        tokenString: String,
-//        shouldGetAccessToken: Boolean
-//    ) = when (shouldGetAccessToken) {
-//        true -> {
-//            val tokenMap = tokenString.substring(1, tokenString.length - 1)
-//                .split(", ")
-//                .map { it.split(": ") }
-//                .associate { (k, v) -> k to v }
-//            tokenMap["'access'"]?.removeSurrounding("'")
-//        }
-//        false -> {
-//            val tokenMap = tokenString.substring(1, tokenString.length - 1)
-//                .split(", ")
-//                .map { it.split(": ") }
-//                .associate { (k, v) -> k to v }
-//            tokenMap["'refresh'"]?.removeSurrounding("'")
-//        }
-//    }
-
 }
