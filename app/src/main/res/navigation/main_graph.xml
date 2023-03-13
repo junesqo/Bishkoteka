@@ -9,7 +9,22 @@
         android:id="@+id/homeFragment"
         android:name="kg.bishkoteka.ui.fragments.main.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment">
+            <argument
+                android:name="eventId"
+                app:argType="integer"
+                android:defaultValue="1" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="kg.bishkoteka.ui.fragments.main.details.DetailsFragment"
+        android:label="DetailsFragment"
+        tools:layout="@layout/fragment_details"/>
 
     <fragment
         android:id="@+id/searchFragment"
@@ -28,5 +43,6 @@
         android:name="kg.bishkoteka.ui.fragments.main.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" />
+
 
 </navigation>

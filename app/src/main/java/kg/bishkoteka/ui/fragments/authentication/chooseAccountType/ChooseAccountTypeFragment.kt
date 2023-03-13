@@ -1,4 +1,4 @@
-package kg.bishkoteka.ui.fragments.authentication.chooseTypeOfAccount;
+package kg.bishkoteka.ui.fragments.authentication.chooseAccountType;
 
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController

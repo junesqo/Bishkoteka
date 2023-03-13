@@ -1,4 +1,4 @@
-package kg.bishkoteka.ui.fragments.authentication.chooseTypeOfAccount
+package kg.bishkoteka.ui.fragments.authentication.chooseAccountType
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kg.bishkoteka.core.base.BaseViewModel

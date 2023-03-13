@@ -20,11 +20,10 @@ class SignUpFragment :
     override fun initListeners() {
         binding.btnSignUp.setOnClickListener {
             viewModel.signUp(
-                binding.etName.text.toString(),
+                binding.etFirstName.text.toString(),
                 binding.etLastName.text.toString(),
                 binding.etUsername.text.toString(),
                 binding.etEmail.text.toString(),
-                binding.etBirthdate.text.toString(),
                 binding.etPassword.text.toString(),
                 binding.etConfirmPassword.text.toString()
             )

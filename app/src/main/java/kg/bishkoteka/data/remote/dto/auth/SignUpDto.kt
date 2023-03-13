@@ -11,8 +11,6 @@ data class SignUpDto(
     val username: String,
     @SerializedName("email")
     val email: String,
-    @SerializedName("date_of_birth")
-    val birthdate: String,
     @SerializedName("password")
     val password: String,
     @SerializedName("password2")

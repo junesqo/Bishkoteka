@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/chooseAccountTypeFragment"
-        android:name="kg.bishkoteka.ui.fragments.authentication.chooseTypeOfAccount.ChooseAccountTypeFragment"
+        android:name="kg.bishkoteka.ui.fragments.authentication.chooseAccountType.ChooseAccountTypeFragment"
         android:label="ChooseAccountTypeFragment"
         tools:layout="@layout/fragment_choose_account_type" >
         <action
