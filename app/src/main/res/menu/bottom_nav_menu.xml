@@ -4,17 +4,17 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/home"
-        android:title="" />
+        android:title="Главная" />
     <item
         android:id="@+id/searchFragment"
         android:icon="@drawable/search"
-        android:title="" />
+        android:title="Поиск" />
     <item
         android:id="@+id/favoriteFragment"
         android:icon="@drawable/like"
-        android:title="" />
+        android:title="Закладки" />
     <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/user"
-        android:title="" />
+        android:title="Профиль" />
 </menu>

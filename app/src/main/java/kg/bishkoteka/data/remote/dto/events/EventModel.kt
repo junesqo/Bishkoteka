@@ -1,8 +1,6 @@
 package kg.bishkoteka.data.remote.dto.events
 
-import com.google.gson.annotations.SerializedName
 import kg.bishkoteka.core.network.paging.BaseDiffModel
-import kg.bishkoteka.core.network.paging.DataMapper
 
 data class EventModel(
 //    @SerializedName("id")
@@ -24,7 +22,7 @@ data class EventModel(
 //    @SerializedName("end_time")
     val end_time: Long,
 //    @SerializedName("categories")
-    val categories: List<Category>?,
+    val categories: List<CategoryModel>?,
 //    @SerializedName("comments")
     val comments: List<Comment>?,
 //    @SerializedName("promotion")

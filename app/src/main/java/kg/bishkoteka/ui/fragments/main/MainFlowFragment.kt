@@ -46,6 +46,10 @@ class MainFlowFragment :
                     navController.navigate(R.id.searchFragment)
                     true
                 }
+                R.id.favoriteFragment -> {
+                    navController.navigate(R.id.favoriteFragment)
+                    true
+                }
                 R.id.profileFragment -> {
                     navController.navigate(R.id.profileFragment)
                     true

@@ -15,10 +15,14 @@ class HomeRepository @Inject constructor(
     private val apiService: PagingApiService,
 ) : BaseRepository() {
 
+    fun getDefaultEvents(category: String): Flow<PagingData<EventModel>> {
+        return doPagingRequest(EventsPagingSource(apiService, FilterModel(category)), pageSize = 5)
+    }
+
+    fun getCategories() = doRequest { dataSource.getCategories() }
+
 //    fun getTours(limit: Int) =
 //        doRequest { dataSource.getEvents(limit = limit) }
 
-    fun getCategoryEvents(category: String): Flow<PagingData<EventModel>> {
-        return doPagingRequest(EventsPagingSource(apiService, FilterModel(category)), pageSize = 5)
-    }
+
 }

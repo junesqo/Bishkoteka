@@ -5,23 +5,22 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import kg.bishkoteka.core.extensions.toDate
 import kg.bishkoteka.core.network.paging.BaseDiffUtilItemCallback
 import kg.bishkoteka.data.remote.dto.events.EventModel
 import kg.bishkoteka.databinding.ItemDefaultEventBinding
-import kg.bishkoteka.databinding.ItemEventBinding
 
-class EventsAdapter(val onTourClick: (Int) -> Unit) :
-    PagingDataAdapter<EventModel, EventsAdapter.TourModelPagingViewHolder>(
+class EventAdapter(val onEventClick: (Int) -> Unit) :
+    PagingDataAdapter<EventModel, EventAdapter.EventModelPagingViewHolder>(
         BaseDiffUtilItemCallback()
     ) {
 
-    override fun onBindViewHolder(holder: TourModelPagingViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: EventModelPagingViewHolder, position: Int) {
         getItem(position)?.let { holder.bind(it) }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TourModelPagingViewHolder {
-        return TourModelPagingViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventModelPagingViewHolder {
+        return EventModelPagingViewHolder(
             ItemDefaultEventBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent, false
@@ -29,7 +28,7 @@ class EventsAdapter(val onTourClick: (Int) -> Unit) :
         )
     }
 
-    inner class TourModelPagingViewHolder(
+    inner class EventModelPagingViewHolder(
         private val binding: ItemDefaultEventBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
@@ -38,9 +37,10 @@ class EventsAdapter(val onTourClick: (Int) -> Unit) :
                 tvEventTitle.text = model.title
                 tvEventDatetime.text = model.start_time.toString()
                 tvEventAddress.text = model.location
+                tvEventDatetime.text = model.start_time.toDate()
 
                 itemView.setOnClickListener {
-                    onTourClick(model.id)
+                    onEventClick(model.id)
                 }
             }
         }

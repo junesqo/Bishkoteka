@@ -2,6 +2,7 @@ package kg.bishkoteka.ui.fragments.main.home
 
 import kg.bishkoteka.core.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kg.bishkoteka.data.remote.dto.events.CategoryModel
 import kg.bishkoteka.data.remote.dto.events.EventsResponse
 import kg.bishkoteka.data.repositories.events.HomeRepository
 import kg.bishkoteka.ui.state.UIState
@@ -15,10 +16,14 @@ class HomeViewModel @Inject constructor(private val homeRepository: HomeReposito
 
     private val _getEventsState = MutableStateFlow<UIState<EventsResponse>>(UIState.Idle())
     val getEventsState = _getEventsState.asStateFlow()
-//    private val _events = mutableUiStateFlow<List<EventUi>>()
-//    val events = _events.asStateFlow()
 
-    fun getConcertEvents() = homeRepository.getCategoryEvents("concerts").gatherPagingRequest { it }
+    private val _getCategoriesState = MutableStateFlow<UIState<List<CategoryModel>>>(UIState.Idle())
+    val getCategoriesState = _getCategoriesState.asStateFlow()
+
+    fun getDefaultEvents() = homeRepository.getDefaultEvents("concerts").gatherPagingRequest { it }
+
+    fun getCategories() = homeRepository.getCategories().collectFlow(_getCategoriesState)
+//    fun getCategories() = homeRepository.getCategories().collectFlow(_getCategoriesState)
 
 }
 

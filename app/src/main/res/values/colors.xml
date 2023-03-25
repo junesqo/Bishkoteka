@@ -7,7 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="pink">#FFFF0054</color>
+    <color name="main">#7203FF</color>
+    <color name="second">#0BCE83</color>
     <color name="grey">#FFCCCCCC</color>
     <color name="blue">#FF1976D2</color>
     <color name="fragment_bg">#F0F1F6</color>

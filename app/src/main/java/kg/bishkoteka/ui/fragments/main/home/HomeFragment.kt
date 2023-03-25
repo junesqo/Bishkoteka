@@ -1,23 +1,30 @@
 package kg.bishkoteka.ui.fragments.main.home
 
 import android.graphics.Color
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import kg.bishkoteka.R
 import kg.bishkoteka.core.base.BaseFragment
+import kg.bishkoteka.data.remote.dto.events.CategoryModel
 import kg.bishkoteka.databinding.FragmentHomeBinding
-import kg.bishkoteka.ui.fragments.main.adapters.EventsAdapter
+import kg.bishkoteka.ui.fragments.main.adapters.CategoryAdapter
+import kg.bishkoteka.ui.fragments.main.adapters.EventAdapter
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.fragment_home) {
     override val binding: FragmentHomeBinding by viewBinding(FragmentHomeBinding::bind)
     override val viewModel by viewModels<HomeViewModel>()
-    private val eventsAdapter by lazy { EventsAdapter(this::onTourClick) }
+    private val eventAdapter by lazy { EventAdapter(this::onTourClick) }
+    private val categoryAdapter by lazy { CategoryAdapter(this::onCategoryClick) }
 
+    private val categoriesList = arrayListOf<CategoryModel>()
 
     override fun initialize() {
         super.initialize()
@@ -25,64 +32,40 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         transparentStatusBar()
     }
 
+
     override fun initRequest() {
         super.initRequest()
-//        getHotTours()
+        getCategories()
+    }
+
+    private fun getCategories() {
+        viewModel.getCategories()
+    }
+
+    private fun getCategoriesState() {
+        viewModel.getCategoriesState.collectUIState {
+            categoriesList.addAll(it)
+            Log.e("Categories", it.toString())
+            categoryAdapter.addData(categoriesList)
+        }
     }
 
     override fun initSubscribers() {
         super.initSubscribers()
-        subscribeCategoryTours()
-//        subscribeHotTours()
+        subscribeDefaultEvents()
+        getCategoriesState()
     }
 
-    override fun initListeners() {
-        super.initListeners()
-//        onHotTourClick()
+    private fun subscribeDefaultEvents() {
+        viewModel.getDefaultEvents().spectatePaging { eventAdapter.submitData(it) }
     }
-
-    private fun subscribeCategoryTours() {
-        viewModel.getConcertEvents().spectatePaging { eventsAdapter.submitData(it) }
-    }
-
-//    private fun subscribeHotTours() {
-//        viewModel.getToursState.collectUIState { response ->
-//
-//            // тестовые данные
-//            val testData = arrayListOf<ShortTourModel>()
-//            testData.add(response.results[0])
-//            testData.add(response.results[1])
-//            testData.add(response.results[3])
-//            animate(testData)
-//
-//            // должно работать, если бек будет работать ;)
-////            animate(response.results.filter { it.is_hot })
-//        }
-//    }
 
     private fun initAdapters() {
         with(binding) {
-            rvEvents.adapter = eventsAdapter
-//            inBike.rvCategory.adapter = horseAdapter
-//            inBike.tvCategory.text = "Велотуры"
+            rvEvents.adapter = eventAdapter
+            rvCategories.adapter = categoryAdapter
         }
     }
-
-//    private fun animate(data: List<ShortTourModel>): Animation? {
-//
-//        val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.hot_tour_anim)
-//        anim.repeatCount = Animation.INFINITE
-//
-//        viewModel.animateHotTours(data)
-//        viewModel.hotTourAnimation.collectUIState { hotTour ->
-//            binding.ivHotTour.startAnimation(anim)
-//            Glide.with(requireContext())
-//                .load(hotTour.tour_images.getMainImage())
-//                .transition(withCrossFade(1000))
-//                .into(binding.ivHotTour)
-//        }
-//        return anim
-//    }
 
     private fun onTourClick(id: Int) {
 //        findNavController().navigate(
@@ -90,13 +73,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 //        )
     }
 
-//    private fun onHotTourClick(){
-//        binding.cvHotTour.setOnClickListener {
-//            viewModel.hotTourAnimation.collectUIState {
-//                onTourClick(it.slug)
-//            }
-//        }
-//    }
+    private fun onCategoryClick(id: Int) {
+        Toast.makeText(requireContext(), id, Toast.LENGTH_SHORT).show()
+//        findNavController().navigate(
+//            R.id.detailsFragment,
+//            bundleOf(KEY_DETAIL_TOUR_BY_WORD to tourSlug)
+//        )
+    }
 
     private fun transparentStatusBar() {
 
