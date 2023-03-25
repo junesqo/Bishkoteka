@@ -10,6 +10,9 @@
     <color name="pink">#FFFF0054</color>
     <color name="grey">#FFCCCCCC</color>
     <color name="blue">#FF1976D2</color>
+    <color name="fragment_bg">#F0F1F6</color>
+
+
 
     <color name="bottom_nav_selected">#FF0054</color> <!-- цвет для выбранной иконки -->
     <color name="bottom_nav_unselected">#B5C0CD</color> <!-- цвет для не выбранной иконки -->

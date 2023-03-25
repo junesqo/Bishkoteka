@@ -19,8 +19,5 @@ class ChooseAccountTypeFragment :
         binding.btnGuest.setOnClickListener {
             findNavController().navigateSafely(R.id.action_chooseAccountTypeFragment_to_signUpFragment)
         }
-        binding.btnOrganizator.setOnClickListener {
-//            findNavController().navigateSafely(R.id.action_chooseAccountTypeFragment_to_signUpOrganizationFragment)
-        }
     }
 }

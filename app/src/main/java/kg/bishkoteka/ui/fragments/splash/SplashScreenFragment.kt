@@ -36,16 +36,16 @@ class SplashScreenFragment :
             withContext(Dispatchers.Main){
 
                 //TODO: убрать эту строчку кода
-                findNavController().navigateSafely(R.id.action_splashScreenFragment_to_mainFlowFragment)
+//                findNavController().navigateSafely(R.id.action_splashScreenFragment_to_mainFlowFragment)
 
-//                when {
-//                userPreferences.isAuthenticated -> {
-//                    findNavController().navigateSafely(R.id.action_splashScreenFragment_to_mainFlowFragment)
-//                }
-//                !userPreferences.isAuthenticated -> {
-//                    findNavController().navigateSafely(R.id.action_splashScreenFragment_to_authenticationFlowFragment)
-//                }
-//            }
+                when {
+                userPreferences.isAuthenticated -> {
+                    findNavController().navigateSafely(R.id.action_splashScreenFragment_to_mainFlowFragment)
+                }
+                !userPreferences.isAuthenticated -> {
+                    findNavController().navigateSafely(R.id.action_splashScreenFragment_to_authenticationFlowFragment)
+                }
+            }
             }
         }
 

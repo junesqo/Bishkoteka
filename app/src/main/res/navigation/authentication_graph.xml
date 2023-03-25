@@ -32,4 +32,5 @@
             android:id="@+id/action_chooseAccountTypeFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
     </fragment>
+
 </navigation>

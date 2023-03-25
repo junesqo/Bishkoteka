@@ -6,10 +6,6 @@ import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(private val apiService : EventsApiService) : BaseDataSource(){
 
-    suspend fun fetchAllOneTimeEvents() = getResult { apiService.fetchAllOneTimeEvents() }
-
-//    suspend fun getSlugs() = getResult { apiService.getSlugs() }
-
-//    suspend fun getTourModelBySlug(slug: String) = getResult { apiService.getTourBySlug(slug) }
+//    suspend fun getCategoryEvents(categoryId: Int) = getResult { apiService.getEvents(categoryId = categoryId) }
 
 }

@@ -6,21 +6,20 @@ import android.widget.ProgressBar
 import androidx.annotation.LayoutRes
 import androidx.constraintlayout.widget.Group
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.PagingData
 import androidx.viewbinding.ViewBinding
+import com.geeks.ulul.data.util.Either
+import kg.bishkoteka.ui.state.UIState
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kg.bishkoteka.core.utils.Either
-import kg.bishkoteka.core.state.UIState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-abstract class BaseBottomSheetFragment<Binding : ViewBinding, ViewModel : BaseViewModel>(
+abstract class BaseBottomSheetDialogFragment<Binding : ViewBinding, ViewModel : BaseViewModel>(
     @LayoutRes layoutId: Int
 ) :
     BottomSheetDialogFragment(layoutId) {

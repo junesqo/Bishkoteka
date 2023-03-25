@@ -8,13 +8,13 @@ import retrofit2.http.POST
 
 interface AuthenticationApiService {
 
-    @POST("accounts/signup/user/")
+    @POST("accounts/signup/customer/")
     suspend fun signUp(@Body signUpDto: SignUpDto)
 
-//    @POST("accounts/signup/organizator")
-//    suspend fun signUpOrganization(@Body signUpOrgDto: SignUpOrgDto)
+//    @POST("accounts/signup/organization")
+//    suspend fun signUpOrganization(@Body signUpOrgDto: SignUpOrganizationDto)
 
     //TODO: ПОМЕНЯТЬ ЕНДПОИНТ
-    @POST("token/")
+    @POST("accounts/login/customer/")
     suspend fun login(@Body signInDto: SignInDto): SignInResultDto
 }

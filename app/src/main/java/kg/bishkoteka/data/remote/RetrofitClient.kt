@@ -5,6 +5,9 @@ import kg.bishkoteka.data.remote.NetworkFastBuilder.Companion.provideOkHttpClien
 import kg.bishkoteka.data.remote.NetworkFastBuilder.Companion.provideRetrofit
 import kg.bishkoteka.data.remote.apiservice.auth.AuthenticationApiService
 import kg.bishkoteka.data.remote.apiservice.auth.RefreshAccessTokenApiService
+import kg.bishkoteka.data.remote.apiservice.events.EventsApiService
+import kg.bishkoteka.data.remote.apiservice.events.PagingApiService
+import kg.bishkoteka.data.remote.apiservice.user.UserApiService
 import kg.bishkoteka.data.remote.interceptors.AuthenticationInterceptor
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -22,6 +25,12 @@ class NetworkClient @Inject constructor(
             }.build()
         )
 
+    fun generatePagingApiService() = retrofit.createAnApi<PagingApiService>()
+
+    fun generateUserApiService() = retrofit.createAnApi<UserApiService>()
+
+    fun generateEventsApiService() = retrofit.createAnApi<EventsApiService>()
+
     class AuthenticationNetworkClient @Inject constructor() {
         private val retrofitNoAuth =
             provideRetrofit(provideOkHttpClientBuilder().build())
@@ -31,6 +40,8 @@ class NetworkClient @Inject constructor(
 
         fun generateRefreshAccessTokenApiService() =
             retrofitNoAuth.createAnApi<RefreshAccessTokenApiService>()
+
+
     }
 }
 

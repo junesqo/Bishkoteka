@@ -38,8 +38,10 @@ class SignInFragment :
         viewModel.signInState.spectateUiState(success = {
             userPreferences.accessToken = it.access
             userPreferences.refreshToken = it.refresh
-            //TODO: поменять на true
-            userPreferences.isAuthenticated = false
+            userPreferences.isAuthenticated = true
+//            userPreferences.userID = it.id
+            userPreferences.username = it.username
+            userPreferences.password = binding.etPassword.text.toString()
             activityNavController().navigateSafely(R.id.action_authenticationFlowFragment_to_mainFlowFragment)
         }, error = {
             Toast.makeText(requireContext(), "ne ok", Toast.LENGTH_SHORT).show()

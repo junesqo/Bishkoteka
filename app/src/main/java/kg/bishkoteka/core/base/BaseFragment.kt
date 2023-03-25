@@ -12,8 +12,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.PagingData
 import androidx.viewbinding.ViewBinding
-import kg.bishkoteka.core.utils.Either
-import kg.bishkoteka.core.state.UIState
+import com.geeks.ulul.data.util.Either
+import kg.bishkoteka.ui.state.UIState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest

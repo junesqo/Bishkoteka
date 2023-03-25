@@ -23,9 +23,11 @@ class SignUpFragment :
                 binding.etFirstName.text.toString(),
                 binding.etLastName.text.toString(),
                 binding.etUsername.text.toString(),
+                binding.etBirthdate.text.toString(),
                 binding.etEmail.text.toString(),
                 binding.etPassword.text.toString(),
-                binding.etConfirmPassword.text.toString()
+                binding.etConfirmPassword.text.toString(),
+                listOf(1,2,3)
             )
         }
         binding.tvSignIn.setOnClickListener {
@@ -36,6 +38,7 @@ class SignUpFragment :
     override fun initSubscribers() {
         viewModel.signUpState.spectateUiState(success = {
             Toast.makeText(requireContext(), "ok", Toast.LENGTH_SHORT).show()
+            findNavController().navigateSafely(R.id.action_signUpFragment_to_signInFragment)
         }, error = {
             Toast.makeText(requireContext(), "ne ok", Toast.LENGTH_SHORT).show()
 
