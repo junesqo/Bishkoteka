@@ -16,12 +16,13 @@ import kg.bishkoteka.data.remote.dto.events.CategoryModel
 import kg.bishkoteka.databinding.FragmentHomeBinding
 import kg.bishkoteka.ui.fragments.main.adapters.CategoryAdapter
 import kg.bishkoteka.ui.fragments.main.adapters.EventAdapter
+import kg.bishkoteka.ui.fragments.main.details.DetailEventFragment
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.fragment_home) {
     override val binding: FragmentHomeBinding by viewBinding(FragmentHomeBinding::bind)
     override val viewModel by viewModels<HomeViewModel>()
-    private val eventAdapter by lazy { EventAdapter(this::onTourClick) }
+    private val eventAdapter by lazy { EventAdapter(this::onEventClick) }
     private val categoryAdapter by lazy { CategoryAdapter(this::onCategoryClick) }
 
     private val categoriesList = arrayListOf<CategoryModel>()
@@ -32,32 +33,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         transparentStatusBar()
     }
 
-
     override fun initRequest() {
         super.initRequest()
         getCategories()
-    }
-
-    private fun getCategories() {
-        viewModel.getCategories()
-    }
-
-    private fun getCategoriesState() {
-        viewModel.getCategoriesState.collectUIState {
-            categoriesList.addAll(it)
-            Log.e("Categories", it.toString())
-            categoryAdapter.addData(categoriesList)
-        }
     }
 
     override fun initSubscribers() {
         super.initSubscribers()
         subscribeDefaultEvents()
         getCategoriesState()
-    }
-
-    private fun subscribeDefaultEvents() {
-        viewModel.getDefaultEvents().spectatePaging { eventAdapter.submitData(it) }
     }
 
     private fun initAdapters() {
@@ -67,10 +51,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         }
     }
 
-    private fun onTourClick(id: Int) {
+    private fun subscribeDefaultEvents() {
+        viewModel.getDefaultEvents().spectatePaging { eventAdapter.submitData(it) }
+    }
+
+    private fun getCategories() {
+        viewModel.getCategories()
+    }
+
+    private fun getCategoriesState() {
+        viewModel.getCategoriesState.collectUIState {
+            categoriesList.addAll(it)
+            categoryAdapter.addData(categoriesList)
+        }
+    }
+
+    private fun onEventClick(id: Int) {
+//        DetailEventFragment().show(parentFragmentManager, "tag")
 //        findNavController().navigate(
-//            R.id.detailTourFragment, bundleOf(KEY_DETAIL_TOUR_HOME to slug)
+//            R.id.detailsFragment, bundleOf(KEY_DETAIL_EVENT_HOME to id)
 //        )
+        findNavController().navigate(
+            R.id.action_homeFragment_to_detailsFragment, bundleOf(KEY_DETAIL_EVENT_HOME to id)
+        )
     }
 
     private fun onCategoryClick(id: Int) {
@@ -96,7 +99,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     }
 
     companion object {
-        const val KEY_DETAIL_TOUR_HOME = "key.detail.tour.home"
+        const val KEY_DETAIL_EVENT_HOME = "key.detail.event.home"
     }
 
 }

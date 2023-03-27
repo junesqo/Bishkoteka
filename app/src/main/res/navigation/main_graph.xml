@@ -20,11 +20,11 @@
         </action>
     </fragment>
 
-    <fragment
+    <dialog
         android:id="@+id/detailsFragment"
-        android:name="kg.bishkoteka.ui.fragments.main.details.DetailsFragment"
+        android:name="kg.bishkoteka.ui.fragments.main.details.DetailEventFragment"
         android:label="DetailsFragment"
-        tools:layout="@layout/fragment_details"/>
+        tools:layout="@layout/fragment_detail_event"/>
 
     <fragment
         android:id="@+id/searchFragment"

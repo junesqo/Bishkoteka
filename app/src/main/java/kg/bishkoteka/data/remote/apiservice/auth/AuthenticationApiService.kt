@@ -15,6 +15,6 @@ interface AuthenticationApiService {
 //    suspend fun signUpOrganization(@Body signUpOrgDto: SignUpOrganizationDto)
 
     //TODO: ПОМЕНЯТЬ ЕНДПОИНТ
-    @POST("accounts/login/customer/")
+    @POST("accounts/login/")
     suspend fun login(@Body signInDto: SignInDto): SignInResultDto
 }

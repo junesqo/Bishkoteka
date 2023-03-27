@@ -8,6 +8,7 @@ class RemoteDataSource @Inject constructor(private val apiService : EventsApiSer
 
 //    suspend fun getCategoryEvents(categoryId: Int) = getResult { apiService.getEvents(categoryId = categoryId) }
 
+    suspend fun getEventById(eventId: Int) = getResult { apiService.getEventById(eventId) }
     suspend fun getCategories() = getResult { apiService.getCategories() }
 
 }

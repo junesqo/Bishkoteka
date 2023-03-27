@@ -20,7 +20,7 @@ class HomeViewModel @Inject constructor(private val homeRepository: HomeReposito
     private val _getCategoriesState = MutableStateFlow<UIState<List<CategoryModel>>>(UIState.Idle())
     val getCategoriesState = _getCategoriesState.asStateFlow()
 
-    fun getDefaultEvents() = homeRepository.getDefaultEvents("concerts").gatherPagingRequest { it }
+    fun getDefaultEvents() = homeRepository.getDefaultEvents("").gatherPagingRequest { it }
 
     fun getCategories() = homeRepository.getCategories().collectFlow(_getCategoriesState)
 //    fun getCategories() = homeRepository.getCategories().collectFlow(_getCategoriesState)

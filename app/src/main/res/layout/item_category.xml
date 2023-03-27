@@ -3,13 +3,14 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginStart="10dp"
-    app:cardCornerRadius="16dp">
+    app:cardUseCompatPadding="true"
+    android:layout_marginEnd="6dp"
+    app:cardCornerRadius="6dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:paddingVertical="12dp"
-        android:paddingHorizontal="24dp"
-        android:background="@color/second"
+        android:paddingHorizontal="16dp"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,7 +18,7 @@
             android:id="@+id/tv_category_title"
             android:text="Категория"
             style="@style/H5"
-            android:textColor="@color/white"
+            android:textColor="@color/main"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
