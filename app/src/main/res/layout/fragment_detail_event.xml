@@ -11,7 +11,7 @@
         <LinearLayout
             android:id="@+id/layout_top"
             android:layout_width="match_parent"
-            android:layout_height="430dp"
+            android:layout_height="520dp"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -21,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/event_example" />
+                android:src="@drawable/event1" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -29,13 +29,30 @@
                 android:layout_marginHorizontal="20dp"
                 android:orientation="vertical">
 
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/tags"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"/>
+
                 <TextView
                     android:id="@+id/tv_title"
                     style="@style/H3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="Длинное название мероприятия" />
+                    android:layout_marginTop="10dp"
+                    android:text="Очень длинное название случайного мероприятия в Бишкеке" />
+
+                <TextView
+                    android:id="@+id/tv_entry_price"
+                    style="@style/H5"
+                    android:textColor="@color/grey_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="Вход свободный · 200 сом"/>
+
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -44,16 +61,16 @@
 
                     <ImageView
                         android:id="@+id/iv_organization_photo"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:scaleType="center"
-                        android:src="@drawable/user"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/dordoi_plaza"
                         android:background="@drawable/bg_rounded"
                         android:backgroundTint="@color/second"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/white" />
+                        />
 
                     <TextView
                         android:id="@+id/tv_organization_name"
@@ -69,6 +86,7 @@
                         app:layout_constraintStart_toEndOf="@+id/iv_organization_photo"
                         app:layout_constraintTop_toTopOf="parent" />
 
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_follow"
                         style="@style/DefaultButton"
@@ -81,6 +99,12 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <View
+                    android:layout_marginTop="20dp"
+                    android:background="@color/grey"
+                    android:layout_width = "match_parent"
+                    android:layout_height="1dp"/>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -90,7 +114,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/bg_starttime"
                         android:background="@drawable/bg_rounded"
-                        android:backgroundTint="@color/selected_bg"
+                        android:backgroundTint="@color/grey_400"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         android:layout_width="48dp"
@@ -104,19 +128,19 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:tint="@color/main" />
+                            app:tint="@color/black" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
                         android:id="@+id/textView2"
                         style="@style/H5"
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:layout_marginStart="10dp"
-                        android:text="Начало"
-                        android:textColor="@color/main_bg"
+                        android:text="Время"
+                        android:textColor="@color/grey_text"
                         app:layout_constraintStart_toEndOf="@id/bg_starttime"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -142,7 +166,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/bg_location"
                         android:background="@drawable/bg_rounded"
-                        android:backgroundTint="@color/selected_bg"
+                        android:backgroundTint="@color/grey_400"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         android:layout_width="48dp"
@@ -152,7 +176,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/location"
-                            app:tint="@color/main"
+                            app:tint="@color/black"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -163,12 +187,12 @@
                     <TextView
                         android:id="@+id/textView"
                         style="@style/H5"
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:layout_marginStart="10dp"
                         android:text="Адрес"
-                        android:textColor="@color/main_bg"
+                        android:textColor="@color/grey_text"
                         app:layout_constraintStart_toEndOf="@id/bg_location"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -184,8 +208,6 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
             </LinearLayout>
 
@@ -221,27 +243,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_top">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/info" />
-
-                <TextView
-                    android:id="@+id/tv_entry"
-                    style="@style/H5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:text="Вход свободный" />
-
-            </LinearLayout>
-
             <TextView
                 style="@style/H4"
                 android:layout_width="match_parent"
@@ -251,14 +252,14 @@
 
             <TextView
                 android:id="@+id/tv_description"
-                style="@style/H6"
+                style="@style/H5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/lorem_ipsum" />
 
             <TextView
-                style="@style/H6"
+                style="@style/H5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

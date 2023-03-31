@@ -10,6 +10,8 @@
     <color name="main">#7203FF</color>
     <color name="second">#0BCE83</color>
     <color name="grey">#FFCCCCCC</color>
+    <color name="grey_400">#F0F2F5</color>
+    <color name="grey_text">#FF8F9092</color>
     <color name="blue">#FF1976D2</color>
     <color name="fragment_bg">#F0F1F6</color>
     <color name="selected_bg">#E2CBFF</color>

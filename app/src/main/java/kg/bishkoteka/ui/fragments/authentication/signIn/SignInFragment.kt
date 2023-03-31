@@ -30,7 +30,7 @@ class SignInFragment :
             )
         }
         binding.tvSignUp.setOnClickListener {
-            findNavController().navigateSafely(R.id.action_signInFragment_to_chooseAccountTypeFragment)
+            findNavController().navigateSafely(R.id.action_signInFragment_to_signUpFragment)
         }
     }
 
