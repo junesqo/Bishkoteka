@@ -1,15 +1,22 @@
 package kg.bishkoteka.data.remote.dto.user
 
 import com.google.gson.annotations.SerializedName
+import kg.bishkoteka.data.remote.dto.events.CategoryModel
 import kg.bishkoteka.data.remote.dto.events.EventModel
 
 data class UserDto(
     @SerializedName("id")
     val id: Int,
-    @SerializedName("username")
-    val username: String,
     @SerializedName("email")
     val email: String,
-    @SerializedName("favorite_tour")
-    val favoriteTour: List<EventModel>
+    @SerializedName("username")
+    val username: String,
+    @SerializedName("first_name")
+    val first_name: String,
+    @SerializedName("last_name")
+    val last_name: String,
+    @SerializedName("date_of_birth")
+    val date_of_birth: String,
+    @SerializedName("interests")
+    val interests: List<CategoryModel>
 )

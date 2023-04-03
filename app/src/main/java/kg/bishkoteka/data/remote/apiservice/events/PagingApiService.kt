@@ -8,12 +8,12 @@ import retrofit2.http.Query
 
 interface PagingApiService {
 
-    @GET("events/onetime")
+    @GET("events/onetime/")
     suspend fun getFilteredEvents(
         @Query("offset") offset: Int = 0,
         @Query("limit") limit: Int = 1,
-        @Query("query") searchQuery: String,
-        @Query("category") categoryId: String
+        @Query("keyword") searchQuery: String,
+        @Query("category") categoryId: Int
     ): Response<EventsResponse>
 
 }

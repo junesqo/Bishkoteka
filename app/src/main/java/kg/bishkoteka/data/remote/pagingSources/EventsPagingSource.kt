@@ -12,6 +12,7 @@ class EventsPagingSource(
 ) :
     BasePagingSource<EventsResponse, EventModel>({
         pagingApiService.getFilteredEvents(it,
-        searchQuery = filter.query,
-        categoryId = filter.category)
+            categoryId = filter.category!!,
+            searchQuery = filter.keyword
+        )
     })

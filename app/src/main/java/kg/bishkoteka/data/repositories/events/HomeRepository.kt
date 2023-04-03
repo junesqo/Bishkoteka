@@ -15,8 +15,12 @@ class HomeRepository @Inject constructor(
     private val apiService: PagingApiService,
 ) : BaseRepository() {
 
-    fun getDefaultEvents(category: String): Flow<PagingData<EventModel>> {
-        return doPagingRequest(EventsPagingSource(apiService, FilterModel(category)), pageSize = 5)
+//    fun getDefaultEvents(): Flow<PagingData<EventModel>> {
+//        return doPagingRequest(EventsPagingSource(apiService, FilterModel()))
+//    }
+
+    fun getNotFilteredEvents(filterModel: FilterModel): Flow<PagingData<EventModel>> {
+        return doPagingRequest(EventsPagingSource(apiService, filterModel), pageSize = 10)
     }
 
     fun getCategories() = doRequest { dataSource.getCategories() }

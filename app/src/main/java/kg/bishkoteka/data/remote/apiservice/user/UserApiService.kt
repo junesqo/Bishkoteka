@@ -6,7 +6,7 @@ import retrofit2.http.*
 
 interface UserApiService {
 
-    @GET("profiles/profile/{id}/")
+    @GET("accounts/profile/customer/")
     suspend fun getUserProfile(@Path("id") id: Int): UserDto
 
 //    @GET("profiles/{id}/favorites")

@@ -12,7 +12,10 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kg.bishkoteka.R
 import kg.bishkoteka.core.base.BaseFragment
+import kg.bishkoteka.core.extensions.navigateSafely
+import kg.bishkoteka.core.extensions.navigateSafelyWithArgs
 import kg.bishkoteka.data.remote.dto.events.CategoryModel
+import kg.bishkoteka.data.remote.dto.events.FilterModel
 import kg.bishkoteka.databinding.FragmentHomeBinding
 import kg.bishkoteka.ui.fragments.main.adapters.CategoryAdapter
 import kg.bishkoteka.ui.fragments.main.adapters.EventAdapter
@@ -24,8 +27,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     override val viewModel by viewModels<HomeViewModel>()
     private val eventAdapter by lazy { EventAdapter(this::onEventClick) }
     private val categoryAdapter by lazy { CategoryAdapter(this::onCategoryClick) }
-
     private val categoriesList = arrayListOf<CategoryModel>()
+    private val filter by lazy { FilterModel() }
 
     override fun initialize() {
         super.initialize()
@@ -40,7 +43,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
     override fun initSubscribers() {
         super.initSubscribers()
-        subscribeDefaultEvents()
+//        subscribeDefaultEvents()
+        subscribeNotFilteredEvents()
         getCategoriesState()
     }
 
@@ -51,8 +55,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         }
     }
 
-    private fun subscribeDefaultEvents() {
-        viewModel.getDefaultEvents().spectatePaging { eventAdapter.submitData(it) }
+//    private fun subscribeDefaultEvents() {
+//        viewModel.getDefaultEvents().spectatePaging { eventAdapter.submitData(it) }
+//    }
+
+    private fun subscribeNotFilteredEvents() {
+        viewModel.getNotFilteredEvents().spectatePaging { eventAdapter.submitData(it)}
     }
 
     private fun getCategories() {
@@ -76,12 +84,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
         )
     }
 
-    private fun onCategoryClick(id: Int) {
-        Toast.makeText(requireContext(), id, Toast.LENGTH_SHORT).show()
-//        findNavController().navigate(
-//            R.id.detailsFragment,
-//            bundleOf(KEY_DETAIL_TOUR_BY_WORD to tourSlug)
-//        )
+    private fun onCategoryClick(categoryId: Int) {
+        Log.e("Filter1", categoryId.toString())
+        filter.category = categoryId
+//        findNavController().navigateSafelyWithArgs(R.id.action_homeFragment_to_filteredEventsFragment, categoryId)
+        findNavController().navigate(
+            R.id.filteredEventsFragment,
+            bundleOf(KEY_CATEGORY_HOME to filter)
+        )
     }
 
     private fun transparentStatusBar() {
@@ -99,6 +109,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
     }
 
     companion object {
+        const val KEY_CATEGORY_HOME = "key.category.home"
+        const val KEY_FILTER = "key.filter"
         const val KEY_DETAIL_EVENT_HOME = "key.detail.event.home"
     }
 

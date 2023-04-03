@@ -3,10 +3,9 @@ package kg.bishkoteka.data.base
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.geeks.ulul.data.util.Either
+import kg.bishkoteka.data.util.Either
 import kg.bishkoteka.core.network.paging.DataMapper
 import kg.bishkoteka.core.network.result.Resource
-import kg.bishkoteka.data.remote.pagingSources.EventsPagingSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

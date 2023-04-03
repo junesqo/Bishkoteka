@@ -14,7 +14,8 @@ interface EventsApiService {
 
     @GET("events/onetime/")
     suspend fun getEvents(
-        @Query("page") page: Int?,
+        @Query("offset") offset: Int = 0,
+//        @Query("page") page: Int?,
         @Query("title") title: String?,
     ): Response<EventModel>
 

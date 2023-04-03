@@ -18,9 +18,12 @@
                 app:argType="integer"
                 android:defaultValue="1" />
         </action>
+        <action
+            android:id="@+id/action_homeFragment_to_filteredEventsFragment"
+            app:destination="@id/filteredEventsFragment" />
     </fragment>
 
-    <dialog
+    <fragment
         android:id="@+id/detailsFragment"
         android:name="kg.bishkoteka.ui.fragments.main.details.DetailEventFragment"
         android:label="DetailsFragment"
@@ -43,6 +46,21 @@
         android:name="kg.bishkoteka.ui.fragments.main.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/filteredEventsFragment"
+        android:name="kg.bishkoteka.ui.fragments.main.all.FilteredEventsFragment"
+        android:label="FilteredEventsFragment"
+        tools:layout="@layout/fragment_filtered_events">
+        <action
+            android:id="@+id/action_filteredEventsFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment">
+            <argument
+                android:name="categoryId"
+                app:argType="integer"
+                android:defaultValue="1" />
+        </action>
+    </fragment>
 
 
 </navigation>

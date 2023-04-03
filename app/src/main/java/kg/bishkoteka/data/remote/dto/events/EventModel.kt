@@ -5,6 +5,7 @@ import kg.bishkoteka.core.network.paging.BaseDiffModel
 data class EventModel(
 //    @SerializedName("id")
     val id: Int,
+    val moderation_status: String,
 //    @SerializedName("title")
     val title: String,
 //    @SerializedName("description")
@@ -24,7 +25,8 @@ data class EventModel(
 //    @SerializedName("categories")
     val categories: List<CategoryModel>?,
 //    @SerializedName("comments")
-    val comments: List<Comment>?,
+    val interested: List<CustomUser>?,
+//    val comments: List<Comment>?,
 //    @SerializedName("promotion")
     val promotion: Promotion?
 ) : BaseDiffModel<Int> {

@@ -1,22 +1,21 @@
-package kg.bishkoteka.util
+package kg.bishkoteka.data.util
 
 import android.content.Context
 import android.content.Intent
 import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.geeks.ulul.data.util.Constant.CORRECT_IMAGE_URL
-import com.geeks.ulul.data.util.Constant.INVALID_IMAGE_URL
+import kg.bishkoteka.data.remote.dto.events.FilterModel
 
 
-//fun FilterModel.changeFilter(newFilter: FilterModel) {
-//    this.category = newFilter.category
-//    this.date_departure = newFilter.date_departure
+fun FilterModel.changeFilter(newFilter: FilterModel) {
+    this.category = newFilter.category
+    this.keyword = newFilter.keyword
 //    this.complexity = newFilter.complexity
 //    this.duration = newFilter.duration
 //    this.price_max = newFilter.price_max
-//}
-//
+}
+
 //fun List<Region>.getRegions(): String {
 //    var result = ""
 //    if (this.isNotEmpty()) {
@@ -40,9 +39,9 @@ fun Intent.share(text: String?): Intent? {
     return Intent.createChooser(this, null)
 }
 
-fun String.correctUrl(): String {
-    return CORRECT_IMAGE_URL + this.substring(INVALID_IMAGE_URL.length, this.length)
-}
+//fun String.correctUrl(): String {
+//    return CORRECT_IMAGE_URL + this.substring(INVALID_IMAGE_URL.length, this.length)
+//}
 
 fun ImageView.load(url: String) {
     Glide.with(this).load(url).into(this)
