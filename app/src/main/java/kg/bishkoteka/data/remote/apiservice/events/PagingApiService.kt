@@ -13,7 +13,8 @@ interface PagingApiService {
         @Query("offset") offset: Int = 0,
         @Query("limit") limit: Int = 1,
         @Query("keyword") searchQuery: String,
-        @Query("category") categoryId: Int
+        @Query("category") categoryId: String,
+        @Query("start_time") startTime: String
     ): Response<EventsResponse>
 
 }

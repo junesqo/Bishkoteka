@@ -15,8 +15,6 @@ data class UserDto(
     val first_name: String,
     @SerializedName("last_name")
     val last_name: String,
-    @SerializedName("date_of_birth")
-    val date_of_birth: String,
     @SerializedName("interests")
     val interests: List<CategoryModel>
 )

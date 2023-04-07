@@ -12,6 +12,7 @@
         android:padding="20dp"
         android:clipToPadding="false"
         tools:listitem="@layout/item_wide_event"
+        android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

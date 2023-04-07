@@ -38,6 +38,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
     override fun initRequest() {
         super.initRequest()
+        getEvents()
         getCategories()
     }
 
@@ -60,7 +61,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 //    }
 
     private fun subscribeNotFilteredEvents() {
-        viewModel.getNotFilteredEvents().spectatePaging { eventAdapter.submitData(it)}
+        viewModel.getPagingEvent.spectatePaging { eventAdapter.submitData(it)}
+    }
+
+    private fun getEvents() {
+        viewModel.getNotFilteredEvents()
     }
 
     private fun getCategories() {
@@ -86,7 +91,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
     private fun onCategoryClick(categoryId: Int) {
         Log.e("Filter1", categoryId.toString())
-        filter.category = categoryId
+        filter.category = categoryId.toString()
 //        findNavController().navigateSafelyWithArgs(R.id.action_homeFragment_to_filteredEventsFragment, categoryId)
         findNavController().navigate(
             R.id.filteredEventsFragment,

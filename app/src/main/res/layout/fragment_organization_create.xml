@@ -19,90 +19,109 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
-            android:text="@string/sign_up" />
+            android:text="Организация" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_username"
             style="@style/DefaultTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
 
             <EditText
-                android:id="@+id/et_username"
+                android:id="@+id/et_organization_name"
                 style="@style/DefaultEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/username" />
+                android:hint="Название" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_email"
             style="@style/DefaultTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
 
             <EditText
-                android:id="@+id/et_email"
+                android:id="@+id/et_organization_type"
                 style="@style/DefaultEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/e_mail"
+                android:hint="Сфера деятельности"
                 android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_password"
             style="@style/DefaultTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:endIconMode="password_toggle"
             android:layout_marginTop="10dp">
 
             <EditText
-                android:inputType="textPassword"
-                android:id="@+id/et_password"
+                android:id="@+id/et_organization_phone_number"
                 style="@style/DefaultEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/password" />
+                android:hint="Телефон" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_confirm_password"
             style="@style/DefaultTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:endIconMode="password_toggle"
             android:layout_marginTop="10dp">
 
             <EditText
-                android:inputType="textPassword"
-                android:id="@+id/et_confirm_password"
+                android:id="@+id/et_organization_instagram"
                 style="@style/DefaultEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/confirm_password" />
+                android:hint="Инстаграм аккаунт"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/DefaultTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/et_organization_address"
+                style="@style/DefaultEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Адрес (необязательно)" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/DefaultTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/et_organization_description"
+                style="@style/DefaultEditText"
+                android:minLines="3"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Комментарии" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_sign_up"
+            android:id="@+id/btn_create_organization"
             style="@style/DefaultBigButton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
-            android:text="@string/sign_up" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_sign_in"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/already_have_an_account_sign_in" />
+            android:text="Создать" />
 
     </LinearLayout>
 

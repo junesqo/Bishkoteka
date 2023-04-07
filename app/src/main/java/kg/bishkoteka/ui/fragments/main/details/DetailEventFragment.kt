@@ -81,7 +81,7 @@ class DetailEventFragment :
                 eventId = model.id
                 tvTitle.text = model.title
                 tvOrganizationName.text = model.organization
-                tvEntryPrice.text = model.entry + " · " + model.price
+                tvEntryPrice.text = "Вход " + model.entry + " · " + model.price + " сом"
                 tvEventAddress.text = model.location
                 tvEventStartTime.text = model.start_time.toDate()
                 tvDescription.text = model.description

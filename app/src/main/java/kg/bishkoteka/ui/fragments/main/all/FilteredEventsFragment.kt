@@ -30,7 +30,6 @@ class FilteredEventsFragment :
     override fun initialize() {
         super.initialize()
         initAdapter()
-
 //        initCategory()
     }
 
@@ -45,10 +44,10 @@ class FilteredEventsFragment :
 
     override fun initSubscribers() {
         super.initSubscribers()
-        collectTours()
+        collectEvents()
     }
 
-    private fun collectTours() {
+    private fun collectEvents() {
         viewModel.getPagingEvent.spectatePaging { filteredEventsAdapter.submitData(it) }
     }
 

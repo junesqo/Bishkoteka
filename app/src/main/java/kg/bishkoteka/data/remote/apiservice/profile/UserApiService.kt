@@ -1,13 +1,18 @@
-package kg.bishkoteka.data.remote.apiservice.user
+package kg.bishkoteka.data.remote.apiservice.profile
 
+import kg.bishkoteka.data.remote.dto.organization.CreateOrganizationDto
+import kg.bishkoteka.data.remote.dto.organization.OrganizationDto
 import kg.bishkoteka.data.remote.dto.user.UserDto
 import retrofit2.Response
 import retrofit2.http.*
 
 interface UserApiService {
 
-    @GET("accounts/profile/customer/")
+    @GET("profile/customer/")
     suspend fun getUserProfile(@Path("id") id: Int): UserDto
+
+    @POST("users/create/organization/")
+    suspend fun createOrganization(@Body createOrganizationDto: CreateOrganizationDto): Response<Unit>
 
 //    @GET("profiles/{id}/favorites")
 //    suspend fun fetchFavorites(@Path("id") id: Int): FavoriteTourResponse
@@ -27,9 +32,9 @@ interface UserApiService {
 //    @PUT("profiles/profile/{id}/")
 //    suspend fun changeUsernameOrEmail(@Body changeUsernameOrEmailDto: ChangeUsernameOrEmailDto)
 
-    @POST("events/{id}/favorite/")
-    suspend fun addFavorite(@Path("id") id: Int): Response<Unit>
-
-    @DELETE("events/{id}/favorite/")
-    suspend fun deleteFavorite(@Path("id") id: Int): Response<Unit>
+//    @POST("events/{id}/favorite/")
+//    suspend fun addFavorite(@Path("id") id: Int): Response<Unit>
+//
+//    @DELETE("events/{id}/favorite/")
+//    suspend fun deleteFavorite(@Path("id") id: Int): Response<Unit>
 }

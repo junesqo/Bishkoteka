@@ -15,22 +15,14 @@ class SignUpViewModel @Inject constructor(
     val signUpState = _signUpState.asStateFlow()
 
     fun signUp(
-        first_name: String,
-        last_name: String,
         username: String,
-        date_of_birth: String,
         email: String,
         password: String,
         passwordConfirm: String,
-        interests_ids: List<Int>
     ) = authenticationRepository.signUp(
-        first_name,
-        last_name,
         username,
-        date_of_birth,
         email,
         password,
         passwordConfirm,
-        interests_ids
     ).gatherRequest(_signUpState)
 }

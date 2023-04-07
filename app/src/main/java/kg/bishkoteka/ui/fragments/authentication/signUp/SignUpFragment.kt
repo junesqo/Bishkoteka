@@ -25,21 +25,14 @@ class SignUpFragment :
     override fun initListeners() {
         binding.btnSignUp.setOnClickListener {
             viewModel.signUp(
-                binding.etFirstName.text.toString(),
-                binding.etLastName.text.toString(),
                 binding.etUsername.text.toString(),
-                binding.tvBirthdate.text.toString(),
                 binding.etEmail.text.toString(),
                 binding.etPassword.text.toString(),
                 binding.etConfirmPassword.text.toString(),
-                listOf(1,2,3)
             )
         }
         binding.tvSignIn.setOnClickListener {
             findNavController().navigateSafely(R.id.action_signUpFragment_to_signInFragment)
-        }
-        binding.btnPickdate.setOnClickListener {
-            showDatePickerDialog()
         }
     }
 
@@ -47,7 +40,6 @@ class SignUpFragment :
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
-        // Create a new instance of the DatePickerDialog class
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             R.style.MySpinnerDatePickerStyle,
@@ -56,19 +48,14 @@ class SignUpFragment :
             month,
             day,
         )
-        // Show the date picker dialog
         datePickerDialog.show()
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        // Get the selected date and do something with it
-        // For example, update a text view with the selected date
         val sdf = SimpleDateFormat("yyyy-MM-dd")
-//        val selectedDate = sdf.format()
         calendar.set(year, month, dayOfMonth)
         val selectedDate = sdf.format(calendar.time)
-//        val selectedDate = "$year-${month + 1}-$dayOfMonth"
-        binding.tvBirthdate.text = selectedDate
+//        binding.tvBirthdate.text = selectedDate
     }
 
     override fun initSubscribers() {

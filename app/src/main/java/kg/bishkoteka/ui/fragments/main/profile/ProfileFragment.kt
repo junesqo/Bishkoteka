@@ -1,6 +1,7 @@
 package kg.bishkoteka.ui.fragments.main.profile
 
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import kg.bishkoteka.core.base.BaseFragment
 import kg.bishkoteka.data.local.preferences.UserPreferences
@@ -21,6 +22,9 @@ class ProfileFragment :
     lateinit var userPreferences: UserPreferences
 
     override fun initListeners() {
+        binding.btnMyOrganizations.setOnClickListener {
+            findNavController().navigateSafely(R.id.action_profileFragment_to_createOrganizationFragment)
+        }
         binding.btnLogOut.setOnClickListener {
             userPreferences.accessToken = ""
             userPreferences.refreshToken = ""

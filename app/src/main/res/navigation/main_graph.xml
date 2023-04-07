@@ -45,7 +45,11 @@
         android:id="@+id/profileFragment"
         android:name="kg.bishkoteka.ui.fragments.main.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_createOrganizationFragment"
+            app:destination="@id/createOrganizationFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/filteredEventsFragment"
@@ -61,6 +65,11 @@
                 android:defaultValue="1" />
         </action>
     </fragment>
+    <fragment
+        android:id="@+id/createOrganizationFragment"
+        android:name="kg.bishkoteka.ui.fragments.main.organization.OrganizationCreateFragment"
+        android:label="OrganizationCreateFragment"
+        tools:layout="@layout/fragment_organization_create"/>
 
 
 </navigation>
