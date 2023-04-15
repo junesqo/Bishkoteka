@@ -10,7 +10,6 @@ import kg.bishkoteka.core.extensions.activityNavController
 import kg.bishkoteka.core.extensions.navigateSafely
 import kg.bishkoteka.data.local.preferences.UserPreferences
 import kg.bishkoteka.databinding.FragmentSignInBinding
-import kg.bishkoteka.ui.fragments.authentication.signIn.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -23,10 +22,10 @@ class SignInFragment :
     @Inject
     lateinit var userPreferences: UserPreferences
 
-    override fun constructListeners() {
+    override fun initListeners() {
         binding.btnSignIn.setOnClickListener {
             viewModel.signIn(
-                binding.etEmail.text.toString(),
+                binding.etUsername.text.toString(),
                 binding.etPassword.text.toString(),
             )
         }
@@ -35,34 +34,17 @@ class SignInFragment :
         }
     }
 
-    override fun launchObservers() {
+    override fun initSubscribers() {
         viewModel.signInState.spectateUiState(success = {
-            userPreferences.accessToken = getAuthenticationToken(it.tokens, true)
-            userPreferences.refreshToken = getAuthenticationToken(it.tokens, false)
+            userPreferences.accessToken = it.access
+            userPreferences.refreshToken = it.refresh
             userPreferences.isAuthenticated = true
+//            userPreferences.userID = it.id
+            userPreferences.username = it.username
+            userPreferences.password = binding.etPassword.text.toString()
             activityNavController().navigateSafely(R.id.action_authenticationFlowFragment_to_mainFlowFragment)
         }, error = {
             Toast.makeText(requireContext(), "ne ok", Toast.LENGTH_SHORT).show()
         })
-    }
-
-    private fun getAuthenticationToken(
-        tokenString: String,
-        shouldGetAccessToken: Boolean
-    ) = when (shouldGetAccessToken) {
-        true -> {
-            val tokenMap = tokenString.substring(1, tokenString.length - 1)
-                .split(", ")
-                .map { it.split(": ") }
-                .associate { (k, v) -> k to v }
-            tokenMap["'access'"]?.removeSurrounding("'")
-        }
-        false -> {
-            val tokenMap = tokenString.substring(1, tokenString.length - 1)
-                .split(", ")
-                .map { it.split(": ") }
-                .associate { (k, v) -> k to v }
-            tokenMap["'refresh'"]?.removeSurrounding("'")
-        }
     }
 }

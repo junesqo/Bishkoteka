@@ -1,58 +1,48 @@
 package kg.bishkoteka.data.remote
 
 
-import kg.bishkoteka.BuildConfig
-import kg.bishkoteka.data.remote.apiservice.AuthenticationApiService
+import kg.bishkoteka.data.remote.NetworkFastBuilder.Companion.provideOkHttpClientBuilder
+import kg.bishkoteka.data.remote.NetworkFastBuilder.Companion.provideRetrofit
+import kg.bishkoteka.data.remote.apiservice.auth.AuthenticationApiService
+import kg.bishkoteka.data.remote.apiservice.auth.RefreshAccessTokenApiService
+import kg.bishkoteka.data.remote.apiservice.events.EventsApiService
+import kg.bishkoteka.data.remote.apiservice.events.PagingApiService
+import kg.bishkoteka.data.remote.apiservice.profile.UserApiService
 import kg.bishkoteka.data.remote.interceptors.AuthenticationInterceptor
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class NetworkClient @Inject constructor(
-    private val authenticationInterceptor: AuthenticationInterceptor
+    private val authenticationInterceptor: AuthenticationInterceptor,
+    private val authenticator: Authenticator
 ) {
 
     private val retrofit =
         provideRetrofit(
-            provideOkHttpClientBuilder().build()
+            provideOkHttpClientBuilder().apply {
+                addInterceptor(authenticationInterceptor)
+                authenticator(authenticator)
+            }.build()
         )
 
-    private val retrofitNoAUth = provideRetrofit(provideOkHttpClientBuilderNoAuth().build())
+    fun generatePagingApiService() = retrofit.createAnApi<PagingApiService>()
 
-    fun generateAuthenticationApiService() = retrofitNoAUth.createAnApi<AuthenticationApiService>()
+    fun generateUserApiService() = retrofit.createAnApi<UserApiService>()
 
-    private fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
-        .baseUrl(BuildConfig.BASE_URL)
-        .client(okHttpClient)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
+    fun generateEventsApiService() = retrofit.createAnApi<EventsApiService>()
 
-    private fun provideOkHttpClientBuilder(): OkHttpClient.Builder = OkHttpClient()
-        .newBuilder()
-        .addInterceptor(provideLoggingInterceptor())
-        .addInterceptor(authenticationInterceptor)
-        .callTimeout(60, TimeUnit.SECONDS)
-        .connectTimeout(60, TimeUnit.SECONDS)
-        .readTimeout(60, TimeUnit.SECONDS)
-        .writeTimeout(60, TimeUnit.SECONDS)
+    class AuthenticationNetworkClient @Inject constructor() {
+        private val retrofitNoAuth =
+            provideRetrofit(provideOkHttpClientBuilder().build())
 
-    private fun provideOkHttpClientBuilderNoAuth(): OkHttpClient.Builder = OkHttpClient()
-        .newBuilder()
-        .addInterceptor(provideLoggingInterceptor())
-        .callTimeout(60, TimeUnit.SECONDS)
-        .connectTimeout(60, TimeUnit.SECONDS)
-        .readTimeout(60, TimeUnit.SECONDS)
-        .writeTimeout(60, TimeUnit.SECONDS)
+        fun generateAuthenticationApiService() =
+            retrofitNoAuth.createAnApi<AuthenticationApiService>()
 
-    private fun provideLoggingInterceptor() = HttpLoggingInterceptor().setLevel(
-        when {
-            BuildConfig.DEBUG -> HttpLoggingInterceptor.Level.BODY
-            else -> HttpLoggingInterceptor.Level.NONE
-        }
-    )
+        fun generateRefreshAccessTokenApiService() =
+            retrofitNoAuth.createAnApi<RefreshAccessTokenApiService>()
 
-    private inline fun <reified T : Any> Retrofit.createAnApi(): T = create(T::class.java)
+
+    }
 }
+
+inline fun <reified T : Any> Retrofit.createAnApi(): T = create(T::class.java)

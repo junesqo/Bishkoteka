@@ -16,3 +16,7 @@ fun NavController.navigateSafely(@IdRes actionId: Int) {
 fun NavController.navigateSafely(directions: NavDirections) {
     currentDestination?.getAction(directions.actionId)?.let { navigate(directions) }
 }
+
+fun NavController.navigateSafelyWithArgs(@IdRes actionId: Int, args: Int) {
+    currentDestination?.getAction(actionId)?.let { navigate(actionId, args = null) }
+}

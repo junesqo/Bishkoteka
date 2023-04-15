@@ -30,14 +30,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
-        when {
-            userPreferences.isAuthenticated -> {
-                navGraph.setStartDestination(R.id.mainFlowFragment)
-            }
-            !userPreferences.isAuthenticated -> {
-                navGraph.setStartDestination(R.id.authenticationFlowFragment)
-            }
-        }
+        navGraph.setStartDestination(R.id.splashScreenFragment)
         navController.graph = navGraph
     }
 }

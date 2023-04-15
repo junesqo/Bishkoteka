@@ -2,11 +2,16 @@ package kg.bishkoteka.data.base
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import kg.bishkoteka.data.utils.Either
+import androidx.paging.PagingData
+import kg.bishkoteka.data.util.Either
+import kg.bishkoteka.core.network.paging.DataMapper
+import kg.bishkoteka.core.network.result.Resource
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import java.io.IOException
 
 abstract class BaseRepository {
     protected fun <T> makeNetworkRequest(
@@ -22,16 +27,16 @@ abstract class BaseRepository {
             emit(Either.Left(value = exception.localizedMessage ?: "Error Occurred!"))
         }
 
-    protected fun <Value : Any> makePagingRequest(
-        pagingSource: BasePagingSource<Value>,
-        pageSize: Int = 20,
+    protected fun <ValueDto : DataMapper<Value>, Value : Any> doPagingRequest(
+        pagingSource: kg.bishkoteka.core.network.paging.BasePagingSource<ValueDto, Value>,
+        pageSize: Int = 10,
         prefetchDistance: Int = pageSize,
         enablePlaceholders: Boolean = true,
         initialLoadSize: Int = pageSize * 3,
         maxSize: Int = Int.MAX_VALUE,
-        jumpThreshold: Int = Int.MIN_VALUE,
-    ) =
-        Pager(
+        jumpThreshold: Int = Int.MIN_VALUE
+    ): Flow<PagingData<Value>> {
+        return Pager(
             config = PagingConfig(
                 pageSize,
                 prefetchDistance,
@@ -44,4 +49,14 @@ abstract class BaseRepository {
                 pagingSource
             }
         ).flow
+    }
+
+    protected fun <T> doRequest(response: suspend () -> Resource<T>): Flow<Resource<T>> = flow {
+        emit(Resource.Loading())
+        try {
+            emit(Resource.Success(response().data))
+        } catch (ioException: IOException) {
+            emit(Resource.Error(ioException.localizedMessage ?: "unknown exception"))
+        }
+    }.flowOn(Dispatchers.IO)
 }

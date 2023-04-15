@@ -1,8 +1,9 @@
 package kg.bishkoteka.data.base
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.project.ulul.data.base.BasePagingResponse
+import kg.bishkoteka.core.network.paging.DataMapper
 import retrofit2.Response
 
 abstract class BasePagingSource<Value : Any>(
@@ -34,4 +35,3 @@ abstract class BasePagingSource<Value : Any>(
         }
     }
 }
-// Чтобы не писать лишний код

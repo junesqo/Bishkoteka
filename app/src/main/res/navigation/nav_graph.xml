@@ -6,14 +6,33 @@
     tools:ignore="InvalidNavigation">
 
     <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="kg.bishkoteka.ui.fragments.splash.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen">
+        <action
+            app:exitAnim="@animator/nav_default_exit_anim"
+            app:destination="@id/mainFlowFragment"
+            app:popUpTo="@id/splashScreenFragment"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_splashScreenFragment_to_mainFlowFragment" />
+        <action
+            app:exitAnim="@animator/nav_default_exit_anim"
+            app:destination="@id/authenticationFlowFragment"
+            app:popUpTo="@id/splashScreenFragment"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_splashScreenFragment_to_authenticationFlowFragment" />
+    </fragment>
+
+    <fragment
         android:id="@+id/mainFlowFragment"
         android:name="kg.bishkoteka.ui.fragments.main.MainFlowFragment"
         android:label="fragment_main_flow"
         tools:layout="@layout/fragment_main_flow">
         <action
             android:id="@+id/action_mainFlowFragment_to_authenticationFlowFragment"
+            app:popUpTo="@id/mainFlowFragment"
             app:destination="@id/authenticationFlowFragment"
-            app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
     </fragment>
 
@@ -21,11 +40,10 @@
         android:id="@+id/authenticationFlowFragment"
         android:name="kg.bishkoteka.ui.fragments.authentication.AuthenticationFlowFragment"
         android:label="fragment_authentication_flow"
-        tools:layout="@layout/fragment_authentication_flow">
+        tools:layout="@layout/fragment_authentication_flow"/>
         <action
             android:id="@+id/action_authenticationFlowFragment_to_mainFlowFragment"
+            app:popUpTo="@id/authenticationFlowFragment"
             app:destination="@id/mainFlowFragment"
-            app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
-    </fragment>
 </navigation>
