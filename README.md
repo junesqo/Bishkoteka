@@ -1,6 +1,6 @@
 # Bishkoteka
 
-![Registration page](https://user-images.githubusercontent.com/62104475/232239185-78c0d6af-aa82-437e-b9b6-d50f1b054069.jpg width="300" height="500")
+<img src="https://user-images.githubusercontent.com/62104475/232239185-78c0d6af-aa82-437e-b9b6-d50f1b054069.jpg" alt= “Registration page” width="300" height="500">
 
 ![Authorization page](https://user-images.githubusercontent.com/62104475/232239196-3aa0a2b8-2656-40e0-a6d5-5d5e209a457a.jpg)
 
