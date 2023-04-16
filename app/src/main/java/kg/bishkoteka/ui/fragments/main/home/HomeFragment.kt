@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -12,14 +11,11 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kg.bishkoteka.R
 import kg.bishkoteka.core.base.BaseFragment
-import kg.bishkoteka.core.extensions.navigateSafely
-import kg.bishkoteka.core.extensions.navigateSafelyWithArgs
 import kg.bishkoteka.data.remote.dto.events.CategoryModel
 import kg.bishkoteka.data.remote.dto.events.FilterModel
 import kg.bishkoteka.databinding.FragmentHomeBinding
 import kg.bishkoteka.ui.fragments.main.adapters.CategoryAdapter
 import kg.bishkoteka.ui.fragments.main.adapters.EventAdapter
-import kg.bishkoteka.ui.fragments.main.details.DetailEventFragment
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.fragment_home) {
@@ -74,6 +70,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
     private fun getCategoriesState() {
         viewModel.getCategoriesState.collectUIState {
+            categoriesList.clear()
             categoriesList.addAll(it)
             categoryAdapter.addData(categoriesList)
         }

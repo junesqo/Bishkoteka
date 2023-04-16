@@ -15,7 +15,7 @@
 
         <TextView
             android:id="@+id/tv_sign_up_title"
-            style="@style/H2"
+            style="@style/Text28Bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"

@@ -1,4 +1,4 @@
-package kg.bishkoteka.ui.fragments.main.organization
+package kg.bishkoteka.ui.fragments.main.organization.create_organization
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kg.bishkoteka.core.base.BaseViewModel

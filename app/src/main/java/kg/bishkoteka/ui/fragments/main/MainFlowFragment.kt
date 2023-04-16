@@ -60,7 +60,8 @@ class MainFlowFragment :
     }
 
     private val hideActionBarDestinations = setOf(
-        R.id.detailsFragment,
+        R.id.homeFragment,
+//        R.id.detailsFragment,
         R.id.favoriteFragment,
         R.id.profileFragment,
     )

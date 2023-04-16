@@ -20,3 +20,9 @@ fun Long.toDate(): String {
     val format = SimpleDateFormat("HH:mm, dd MMMM yyyy", Locale.getDefault())
     return format.format(date)
 }
+
+fun Long.getDay(): String {
+    val date = Date(this * 1000)
+    val format = SimpleDateFormat("dd", Locale.getDefault())
+    return format.format(date)
+}

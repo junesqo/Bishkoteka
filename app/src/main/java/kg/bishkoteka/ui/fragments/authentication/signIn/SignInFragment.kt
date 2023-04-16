@@ -1,5 +1,6 @@
 package kg.bishkoteka.ui.fragments.authentication.signIn
 
+import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -39,8 +40,10 @@ class SignInFragment :
             userPreferences.accessToken = it.access
             userPreferences.refreshToken = it.refresh
             userPreferences.isAuthenticated = true
-//            userPreferences.userID = it.id
+            userPreferences.userID = it.id.toString()
+            Log.e("userId", userPreferences.userID.toString())
             userPreferences.username = it.username
+            userPreferences.userEmail = it.email
             userPreferences.password = binding.etPassword.text.toString()
             activityNavController().navigateSafely(R.id.action_authenticationFlowFragment_to_mainFlowFragment)
         }, error = {

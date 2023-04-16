@@ -1,17 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="20dp"
+    android:paddingTop="40dp"
+    android:background="@color/fragment_bg"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.textview.MaterialTextView
+    <com.google.android.material.button.MaterialButton
+        android:text="DefaultButton"
+        style="@style/DefaultButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Favorite"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.button.MaterialButton
+        android:text="DefaultBigButton"
+        style="@style/DefaultBigButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:text="ItemButton"
+        style="@style/ItemButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        style="@style/DefaultEditText"
+        android:hint="DefaultEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        style="@style/Text20Bold"
+        android:text="TextTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+<!--    <TextView-->
+<!--        style="@style/Text16Medium"-->
+<!--        android:text="TextSubheading"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+<!--    <TextView-->
+<!--        style="@style/Text14Medium"-->
+<!--        android:text="TextBody1"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+<!--    <TextView-->
+<!--        style="@style/Text14Semibold"-->
+<!--        android:text="TextBody2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+<!--    <TextView-->
+<!--        style="@style/Text12Medium"-->
+<!--        android:text="TextCaption"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+    <TextView
+        style="@style/Text28Bold"
+        android:text="Заголовок - 28 Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        style="@style/Text20Bold"
+        android:text="Название-заголовок страницы в деталях - 20 Semibold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        style="@style/Text20Semibold"
+        android:text="Название - 20 Semibold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        style="@style/Text16Semibold"
+        android:text="Title карточки - 16 Semibold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+<!--    <TextView-->
+<!--        style="@style/Subtitle2"-->
+<!--        android:text="Subtitle2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+    <TextView
+        style="@style/Text16Regular"
+        android:text="Второстепенный текст - 16 Regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        style="@style/Text14Semibold"
+        android:text="Организатор? - 16 Semibold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        style="@style/Text14Regular"
+        android:text="Второстепенный текст - 14 Regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+<!--    <TextView-->
+<!--        style="@style/H5"-->
+<!--        android:text="TextH5"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+<!--    <TextView-->
+<!--        style="@style/Text12Regular"-->
+<!--        android:text="TextH6"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"/>-->
+
+</LinearLayout>

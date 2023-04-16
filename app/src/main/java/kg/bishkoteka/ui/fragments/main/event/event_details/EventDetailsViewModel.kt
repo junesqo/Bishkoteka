@@ -1,4 +1,4 @@
-package kg.bishkoteka.ui.fragments.main.details
+package kg.bishkoteka.ui.fragments.main.event.event_details
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kg.bishkoteka.core.base.BaseViewModel
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailEventViewModel @Inject constructor(
+class EventDetailsViewModel @Inject constructor(
     private val detailEventRepository: DetailEventRepository
 ) : BaseViewModel() {
 

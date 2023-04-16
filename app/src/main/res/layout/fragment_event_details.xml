@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
-            android:src="@drawable/event1" />
+            android:src="@drawable/event_example" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,43 +27,27 @@
             android:layout_marginHorizontal="20dp"
             android:orientation="vertical">
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/tags"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" />
-
             <TextView
                 android:id="@+id/tv_title"
-                style="@style/H3"
+                style="@style/Text20Bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Очень длинное название случайного мероприятия в Бишкеке" />
-
-            <TextView
-                android:id="@+id/tv_entry_price"
-                style="@style/H5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                android:text="Вход свободный · 200 сом"
-                android:textColor="@color/grey_text" />
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp">
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/iv_organization_photo"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:background="@drawable/bg_rounded"
                     android:backgroundTint="@color/second"
-                    android:scaleType="fitCenter"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/dordoi_plaza"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +55,8 @@
 
                 <TextView
                     android:id="@+id/tv_organization_name"
-                    style="@style/H5"
+                    style="@style/Text14Semibold"
+                    android:textColor="@color/black"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -88,7 +73,7 @@
                     android:id="@+id/btn_follow"
                     style="@style/DefaultButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="wrap_content"
                     android:text="Подписаться"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -96,16 +81,30 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/tags"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </HorizontalScrollView>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/grey" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -131,19 +130,19 @@
 
                 <TextView
                     android:id="@+id/textView2"
-                    style="@style/H5"
+                    style="@style/Text14Semibold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="4dp"
                     android:text="Время"
-                    android:textColor="@color/grey_text"
+                    android:textColor="@color/black"
                     app:layout_constraintStart_toEndOf="@id/bg_starttime"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_event_start_time"
-                    style="@style/H5"
+                    style="@style/Text14Regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -183,19 +182,19 @@
 
                 <TextView
                     android:id="@+id/textView"
-                    style="@style/H5"
+                    style="@style/Text14Semibold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="4dp"
                     android:text="Адрес"
-                    android:textColor="@color/grey_text"
+                    android:textColor="@color/black"
                     app:layout_constraintStart_toEndOf="@id/bg_location"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_event_address"
-                    style="@style/H5"
+                    style="@style/Text14Regular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -212,7 +211,6 @@
             android:id="@+id/layout_expanded"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
             android:orientation="vertical"
             android:paddingBottom="30dp"
 
@@ -220,27 +218,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_top">
 
-            <TextView
-                style="@style/H4"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_description"
+                android:drawableEnd="@drawable/more"
+                android:text="Подробнее"
+                style="@style/ItemButtonSemibold"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Подробнее" />
+                android:layout_height="wrap_content"/>
 
             <TextView
                 android:id="@+id/tv_description"
-                style="@style/H5"
+                style="@style/Text14Regular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:layout_marginHorizontal="20dp"
                 android:text="@string/lorem_ipsum" />
 
-            <TextView
-                style="@style/H5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/lorem_ipsum" />
         </LinearLayout>
 
     </LinearLayout>

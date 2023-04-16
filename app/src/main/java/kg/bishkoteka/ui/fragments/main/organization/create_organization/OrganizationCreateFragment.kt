@@ -1,4 +1,4 @@
-package kg.bishkoteka.ui.fragments.main.organization
+package kg.bishkoteka.ui.fragments.main.organization.create_organization
 
 import android.util.Log
 import androidx.fragment.app.viewModels
@@ -9,7 +9,6 @@ import kg.bishkoteka.R
 import kg.bishkoteka.core.base.BaseFragment
 import kg.bishkoteka.data.remote.dto.organization.CreateOrganizationDto
 import kg.bishkoteka.data.util.showToast
-import kg.bishkoteka.databinding.FragmentFavoriteBinding
 import kg.bishkoteka.databinding.FragmentOrganizationCreateBinding
 
 @AndroidEntryPoint

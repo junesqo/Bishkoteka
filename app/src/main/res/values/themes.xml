@@ -26,15 +26,31 @@
         <item name="android:background">@drawable/bottom_sheet_background</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
+        <item name="cornerSize">10%</item>
+    </style>
+
+    <style name="ItemChip">
+        <item name="chipCornerRadius">8dp</item>
+        <item name="chipStartPadding">4dp</item>
+        <item name="chipEndPadding">4dp</item>
+        <item name="background">@color/grey_400</item>
+    </style>
+
     <style name="DefaultBigButton" parent="Widget.Material3.Button">
         <item name="android:layout_width">200dp</item>
-        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_height">60dp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:backgroundTint">@color/main</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/sf_ui_display_semibold</item>
+        <item name="android:letterSpacing">0.03</item>
         <!--        <item name="color">#FFFF0054</item>-->
         <!--        <item name="colorPrimary">#FFFF0054</item>-->
         <!--        <item name="colorAccent">#FFFF0054</item>-->
@@ -42,9 +58,10 @@
         <item name="cornerRadius">10dp</item>
     </style>
 
-    <style name="DefaultButton" parent="Widget.Material3.Button">
+    <style name="DefaultButton">
         <item name="android:layout_width">200dp</item>
         <item name="android:layout_height">48dp</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
         <item name="android:paddingHorizontal">14dp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:backgroundTint">@color/main</item>
@@ -52,11 +69,60 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">@font/sf_ui_display_semibold</item>
+        <item name="android:letterSpacing">0.03</item>
 <!--        <item name="color">#FFFF0054</item>-->
 <!--        <item name="colorPrimary">#FFFF0054</item>-->
 <!--        <item name="colorAccent">#FFFF0054</item>-->
 <!--        <item name="colorOnPrimary">#FFFF0054</item>-->
         <item name="cornerRadius">8dp</item>
+    </style>
+
+    <style name="ItemButton">
+        <item name="android:paddingHorizontal">20dp</item>
+        <item name="android:background">#00000000</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:gravity">center|start</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/sf_ui_display_regular</item>
+        <item name="maxLines">1</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="ItemButtonCategory" parent="ItemButton">
+        <item name="fontFamily">@font/sf_ui_display_medium</item>
+    </style>
+
+    <style name="ItemButtonSemibold" parent="ItemButton">
+        <item name="fontFamily">@font/sf_ui_display_semibold</item>
+    </style>
+
+    <style name="ItemButtonTitle" parent="ItemButton">
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/sf_ui_display_bold</item>
+    </style>
+
+    <style name="LittleInfo">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center</item>
+        <item name="fontFamily">@font/sf_ui_display_regular</item>
+        <item name="drawableTint">@color/main</item>
+        <item name="maxLines">1</item>
+        <item name="android:drawablePadding">4dp</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="DefaultCard" parent="Widget.MaterialComponents.CardView">
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="cardCornerRadius">12dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="background">@color/white</item>
     </style>
 
     <style name="MySpinnerDatePickerStyle" parent="android:Theme.Material.Dialog">
@@ -72,73 +138,85 @@
         <item name="boxCornerRadiusTopEnd">10dp</item>
         <item name="boxCornerRadiusBottomStart">10dp</item>
         <item name="boxCornerRadiusBottomEnd">10dp</item>
-        <item name="fontFamily">@font/sf_ui_display_medium</item>
+        <item name="fontFamily">@font/sf_ui_display_semibold</item>
     </style>
 
     <style name="DefaultEditText">
         <item name="maxLines">1</item>
         <item name="android:imeOptions">actionNext</item>
         <item name="backgroundTint">@color/white</item>
-        <item name="fontFamily">@font/sf_ui_display_medium</item>
+        <item name="fontFamily">@font/sf_ui_display_semibold</item>
+        <item name="android:textSize">14sp</item>
 <!--        <item name="background">@drawable/default_edit_text</item>-->
     </style>
 
     <style name="H1">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">36sp</item>
-        <item name="android:fontFamily">@font/sf_ui_display_heavy</item>
+        <item name="android:fontFamily">@font/montserrat_black</item>
     </style>
 
-    <style name="H2">
+<!--    Все заголовки-->
+    <style name="Text28Bold">
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">28sp</item>
         <item name="android:fontFamily">@font/sf_ui_display_bold</item>
     </style>
 
-    <style name="H3">
-        <item name="android:textColor">@color/black</item>
+<!--    Название-заголовок страницы в деталях (если заголовок один)-->
+    <style name="Text20Bold">
         <item name="android:textSize">20sp</item>
         <item name="android:fontFamily">@font/sf_ui_display_bold</item>
-    </style>
-
-    <style name="H4">
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:fontFamily">@font/sf_ui_display_bold</item>
     </style>
 
-    <style name="ItemButton">
-        <item name="android:foreground">?attr/selectableItemBackground</item>
-        <item name="android:gravity">center|start</item>
-        <item name="android:insetTop">0dp</item>
-        <item name="android:insetBottom">0dp</item>
-        <item name="textAllCaps">false</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:stateListAnimator">@null</item>
+    <!--    Заголовок(если заголовков много)-->
+    <style name="Text20Semibold">
         <item name="android:textColor">@color/black</item>
-        <item name="fontFamily">@font/sf_ui_display_medium</item>
-        <item name="maxLines">1</item>
-        <item name="elevation">0dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/sf_ui_display_semibold</item>
     </style>
 
-    <style name="H4_regular">
+<!--    Title карточки-->
+    <style name="Text16Semibold">
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">@font/sf_ui_display_semibold</item>
     </style>
 
-    <style name="H5">
+<!--    <style name="Text16Medium">-->
+<!--        <item name="android:textColor">@color/black</item>-->
+<!--        <item name="android:textSize">16sp</item>-->
+<!--        <item name="android:fontFamily">@font/sf_ui_display_medium</item>-->
+<!--    </style>-->
+
+    <!--            Второстепенный текст после заголовка-->
+    <style name="Text16Regular">
         <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textIsSelectable">true</item>
-        <item name="android:fontFamily">@font/sf_ui_display_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/sf_ui_display_regular</item>
     </style>
 
-    <style name="H6">
-        <item name="android:textColor">@color/black</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:textIsSelectable">true</item>
-        <item name="android:fontFamily">@font/sf_ui_display_medium</item>
+    <style name="Text14Semibold">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/sf_ui_display_semibold</item>
     </style>
+
+    <style name="Text14Regular">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/sf_ui_display_regular</item>
+    </style>
+
+<!--    <style name="Text12Medium">-->
+<!--        <item name="android:textSize">12sp</item>-->
+<!--        <item name="android:fontFamily">@font/sf_ui_display_medium</item>-->
+<!--    </style>-->
+
+<!--    <style name="Text12Regular">-->
+<!--        <item name="android:textColor">@color/black</item>-->
+<!--        <item name="android:textSize">12sp</item>-->
+<!--        <item name="android:textIsSelectable">true</item>-->
+<!--        <item name="android:fontFamily">@font/sf_ui_display_regular</item>-->
+<!--    </style>-->
 
 </resources>

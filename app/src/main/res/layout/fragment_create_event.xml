@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
-            android:text="Организация" />
+            android:text="Мероприятие" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/DefaultTextInputLayout"
@@ -28,7 +28,7 @@
             android:layout_marginTop="10dp">
 
             <EditText
-                android:id="@+id/et_organization_name"
+                android:id="@+id/et_event_title"
                 style="@style/DefaultEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,15 +43,72 @@
             android:layout_marginTop="10dp">
 
             <EditText
-                android:id="@+id/et_organization_type"
+                android:id="@+id/et_event_location"
                 style="@style/DefaultEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Сфера деятельности"
+                android:hint="Адрес события"
                 android:inputType="textEmailAddress" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/et_event_start_date"
+                style="@style/DefaultButton"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Дата начала" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/et_event_start_time"
+                style="@style/DefaultButton"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Время начала" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/et_event_end_date"
+                style="@style/DefaultButton"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Дата конца" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/et_event_end_time"
+                style="@style/DefaultButton"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Время конца" />
+
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/spinner_entry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:popupBackground="@android:color/white"
+            android:scrollbars="none"
+            android:spinnerMode="dropdown" />
+
         <com.google.android.material.textfield.TextInputLayout
             style="@style/DefaultTextInputLayout"
             android:layout_width="match_parent"
@@ -59,13 +116,15 @@
             android:layout_marginTop="10dp">
 
             <EditText
-                android:id="@+id/et_organization_phone_number"
+                android:id="@+id/et_event_price"
                 style="@style/DefaultEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Телефон" />
+                android:hint="Минимальная цена входа"
+                android:inputType="number" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/DefaultTextInputLayout"
@@ -74,44 +133,13 @@
             android:layout_marginTop="10dp">
 
             <EditText
-                android:id="@+id/et_organization_instagram"
+                android:id="@+id/et_event_description"
                 style="@style/DefaultEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Инстаграм аккаунт"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/DefaultTextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <EditText
-                android:id="@+id/et_organization_address"
-                style="@style/DefaultEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Адрес (необязательно)" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/DefaultTextInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
-
-            <EditText
-                android:id="@+id/et_organization_description"
-                style="@style/DefaultEditText"
-                android:minLines="3"
                 android:gravity="left"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Комментарии" />
+                android:hint="Дополнительная информация"
+                android:minLines="3" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

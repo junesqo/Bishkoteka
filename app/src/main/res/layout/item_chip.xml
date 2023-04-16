@@ -5,7 +5,4 @@
     android:layout_height="wrap_content"
     android:text="Category"
     android:textColor="@color/black"
-    android:backgroundTint="@color/grey_400"
-    app:chipEndPadding="4dp"
-    app:chipStartPadding="4dp"
-    app:chipCornerRadius="8dp" />
+    style="@style/ItemChip"/>

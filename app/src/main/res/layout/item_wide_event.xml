@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/DefaultCard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginEnd="6dp"
-    app:cardUseCompatPadding="true"
     app:cardCornerRadius="8dp">
 
     <LinearLayout
@@ -20,24 +20,24 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="110dp"
             android:layout_marginHorizontal="10dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_event_title"
-                style="@style/H4"
-                android:maxLines="2"
-                android:ellipsize="end"
+                style="@style/Text16Semibold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:text="Event example name" />
 
             <TextView
                 android:id="@+id/tv_event_address"
-                style="@style/H6"
+                style="@style/Text14Regular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -46,7 +46,7 @@
 
             <TextView
                 android:id="@+id/tv_event_datetime"
-                style="@style/H6"
+                style="@style/Text14Regular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"

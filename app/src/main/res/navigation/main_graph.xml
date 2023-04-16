@@ -25,9 +25,9 @@
 
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="kg.bishkoteka.ui.fragments.main.details.DetailEventFragment"
+        android:name="kg.bishkoteka.ui.fragments.main.event.event_details.EventDetailsFragment"
         android:label="DetailsFragment"
-        tools:layout="@layout/fragment_detail_event"/>
+        tools:layout="@layout/fragment_event_details"/>
 
     <fragment
         android:id="@+id/searchFragment"
@@ -47,8 +47,8 @@
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" >
         <action
-            android:id="@+id/action_profileFragment_to_createOrganizationFragment"
-            app:destination="@id/createOrganizationFragment" />
+            android:id="@+id/action_profileFragment_to_myOrganizationsFragment"
+            app:destination="@id/myOrganizationsFragment" />
     </fragment>
 
     <fragment
@@ -67,9 +67,36 @@
     </fragment>
     <fragment
         android:id="@+id/createOrganizationFragment"
-        android:name="kg.bishkoteka.ui.fragments.main.organization.OrganizationCreateFragment"
+        android:name="kg.bishkoteka.ui.fragments.main.organization.create_organization.OrganizationCreateFragment"
         android:label="OrganizationCreateFragment"
         tools:layout="@layout/fragment_organization_create"/>
+    <fragment
+        android:id="@+id/myOrganizationsFragment"
+        android:name="kg.bishkoteka.ui.fragments.main.organization.my_organizations.MyOrganizationsFragment"
+        android:label="MyOrganizationsFragment"
+        tools:layout="@layout/fragment_my_organizations">
+
+        <action
+            android:id="@+id/action_myOrganizationsFragment_to_createOrganizationFragment"
+            app:destination="@id/createOrganizationFragment" />
+        <action
+            android:id="@+id/action_myOrganizationsFragment_to_organizationDetailsFragment"
+            app:destination="@id/organizationDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/organizationDetailsFragment"
+        android:name="kg.bishkoteka.ui.fragments.main.organization.organization_details.OrganizationDetailsFragment"
+        android:label="OrganizationDetailsFragment"
+        tools:layout="@layout/fragment_organization_details">
+        <action
+            android:id="@+id/action_organizationDetailsFragment_to_createEventFragment"
+            app:destination="@id/createEventFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createEventFragment"
+        android:name="kg.bishkoteka.ui.fragments.main.event.create_event.CreateEventFragment"
+        android:label="CreateEventFragment"
+        tools:layout="@layout/fragment_create_event"/>
 
 
 </navigation>

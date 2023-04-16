@@ -1,33 +1,24 @@
-package kg.bishkoteka.ui.fragments.main.details
+package kg.bishkoteka.ui.fragments.main.event.event_details
 
 import android.util.Log
-import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
-import android.widget.FrameLayout
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kg.bishkoteka.R
-import kg.bishkoteka.core.base.BaseBottomSheetDialogFragment
 import kg.bishkoteka.core.base.BaseFragment
 import kg.bishkoteka.core.extensions.addChip
 import kg.bishkoteka.core.extensions.toDate
-import kg.bishkoteka.data.remote.dto.events.CategoryModel
-import kg.bishkoteka.databinding.FragmentDetailEventBinding
-import kg.bishkoteka.ui.fragments.main.adapters.CategoryAdapter
+import kg.bishkoteka.databinding.FragmentEventDetailsBinding
 import kg.bishkoteka.ui.fragments.main.all.FilteredEventsFragment.Companion.KEY_DETAIL_EVENT_FILTERED
 
 import kg.bishkoteka.ui.fragments.main.home.HomeFragment.Companion.KEY_DETAIL_EVENT_HOME
 
 @AndroidEntryPoint
-class DetailEventFragment :
-    BaseFragment<FragmentDetailEventBinding, DetailEventViewModel>(R.layout.fragment_detail_event) {
-    override val binding: FragmentDetailEventBinding by viewBinding(FragmentDetailEventBinding::bind)
-    override val viewModel by viewModels<DetailEventViewModel>()
+class EventDetailsFragment :
+    BaseFragment<FragmentEventDetailsBinding, EventDetailsViewModel>(R.layout.fragment_event_details) {
+    override val binding: FragmentEventDetailsBinding by viewBinding(FragmentEventDetailsBinding::bind)
+    override val viewModel by viewModels<EventDetailsViewModel>()
 //    private val categoryAdapter by lazy { CategoryAdapter(this::onCategoryClick) }
 
     private var eventId: Int = -1
@@ -51,29 +42,6 @@ class DetailEventFragment :
 
     private fun collectEventById() {
 
-//        val testCategoryData = arrayListOf<CategoryModel>()
-//        testCategoryData.add(CategoryModel(1, "Концерты"))
-//        testCategoryData.add(CategoryModel(2, "Фестивали"))
-//        testCategoryData.add(CategoryModel(3, "Тусовки"))
-//        testCategoryData.add(CategoryModel(4, "Вечеринки"))
-//        testCategoryData.add(CategoryModel(5, "Развлечения"))
-//        binding.tags.apply {
-//            if (testCategoryData.isNullOrEmpty()){
-//                binding.tags.visibility = View.GONE
-//                Log.e("Chips1", "visibility - gone")
-//            }else {
-////                        removeAllViews()
-//                if (testCategoryData.size > 2) {
-//                    testCategoryData.subList(0, 2).forEach { tag -> addChip(tag.title) }
-//                    addChip("+${testCategoryData.size - 2}")
-//                    Log.e("Chips2", testCategoryData.toString())
-//                } else {
-//                    testCategoryData.forEach { tag -> addChip(tag.title) }
-//                    Log.e("Chips3", testCategoryData.toString())
-//                }
-//            }
-//        }
-
         viewModel.getEventByIdState.collectUIState { model ->
             with(binding) {
                 Log.e("collectEventById", "Success")
@@ -81,17 +49,28 @@ class DetailEventFragment :
                 eventId = model.id
                 tvTitle.text = model.title
                 tvOrganizationName.text = model.organization
-                tvEntryPrice.text = "Вход " + model.entry + " · " + model.price + " сом"
                 tvEventAddress.text = model.location
                 tvEventStartTime.text = model.start_time.toDate()
                 tvDescription.text = model.description
                 Log.e("Model chips", model.categories.toString())
+                tags.apply {
+                    removeAllViews()
+                    addChip("Вход " + model.entry + " сом")
+                    if (model.price == 0) {
+                        addChip("Бесплатно")
+                    } else {
+                        addChip("от " + model.price.toString())
+                    }
+                    if (model.categories.isNullOrEmpty()){} else {
+                        model.categories.forEach { tag -> addChip(tag.title)}
+                    }
+
+                }
 //                tags.apply {
 //                    if (model.categories.isNullOrEmpty()){
 //                        tags.visibility = View.GONE
 //                    }else {
 //                        removeAllViews()
-//
 //                        if (model.categories.size > 2) {
 //                            model.categories.subList(0, 2).forEach { tag -> addChip(tag.title) }
 //                            addChip("+${model.categories.size - 2}")
@@ -108,10 +87,11 @@ class DetailEventFragment :
         super.initialize()
         initId()
     }
+
     private fun initId() {
         checkId(KEY_DETAIL_EVENT_HOME)
+        checkId(KEY_DETAIL_EVENT_FILTERED)
 //        checkSlug(KEY_DETAIL_TOUR_BY_WORD)
-//        checkId(KEY_DETAIL_EVENT_FILTERED)
 //        checkSlug(KEY_DETAIL_TOUR_FAVORITE)
     }
     private fun checkId(key: String) {

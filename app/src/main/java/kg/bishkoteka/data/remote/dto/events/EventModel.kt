@@ -26,7 +26,7 @@ data class EventModel(
     val categories: List<CategoryModel>?,
 //    @SerializedName("comments")
     val interested: List<CustomUser>?,
-//    val comments: List<Comment>?,
+    val comments: List<Comment>?,
 //    @SerializedName("promotion")
     val promotion: Promotion?
 ) : BaseDiffModel<Int> {

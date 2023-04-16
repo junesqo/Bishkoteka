@@ -8,8 +8,18 @@ import retrofit2.http.*
 
 interface UserApiService {
 
-    @GET("profile/customer/")
+    @GET("profile/customer/{id}/")
     suspend fun getUserProfile(@Path("id") id: Int): UserDto
+
+    @GET("profile/customer/{id}/organizations/")
+    suspend fun getMyOrganizations(
+        @Path("id") id: Int
+    ): Response<List<OrganizationDto>>
+
+    @GET("profile/organization/{id}/")
+    suspend fun getOrganizationById(
+        @Path("id") id: Int,
+    ): Response<OrganizationDto>
 
     @POST("users/create/organization/")
     suspend fun createOrganization(@Body createOrganizationDto: CreateOrganizationDto): Response<Unit>
