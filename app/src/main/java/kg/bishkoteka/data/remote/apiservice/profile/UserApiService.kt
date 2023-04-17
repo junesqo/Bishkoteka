@@ -1,28 +1,35 @@
 package kg.bishkoteka.data.remote.apiservice.profile
 
-import kg.bishkoteka.data.remote.dto.organization.CreateOrganizationDto
-import kg.bishkoteka.data.remote.dto.organization.OrganizationDto
-import kg.bishkoteka.data.remote.dto.user.UserDto
+import kg.bishkoteka.data.models.post.organization.OrganizationCreateRequest
+import kg.bishkoteka.data.models.get.organization.OrganizationResponse
+import kg.bishkoteka.data.models.get.profile.UserResponse
+import kg.bishkoteka.data.models.post.profile.ProfileEditRequest
 import retrofit2.Response
 import retrofit2.http.*
 
 interface UserApiService {
 
     @GET("profile/customer/{id}/")
-    suspend fun getUserProfile(@Path("id") id: Int): UserDto
+    suspend fun getUserProfile(@Path("id") id: Int): Response<UserResponse>
+
+    @PUT("profile/customer/{id}/")
+    suspend fun editProfile(
+        @Path("id") id: Int,
+        @Body profileEditRequest: ProfileEditRequest
+    ): Response<Unit>
 
     @GET("profile/customer/{id}/organizations/")
     suspend fun getMyOrganizations(
         @Path("id") id: Int
-    ): Response<List<OrganizationDto>>
+    ): Response<List<OrganizationResponse>>
 
     @GET("profile/organization/{id}/")
     suspend fun getOrganizationById(
         @Path("id") id: Int,
-    ): Response<OrganizationDto>
+    ): Response<OrganizationResponse>
 
     @POST("users/create/organization/")
-    suspend fun createOrganization(@Body createOrganizationDto: CreateOrganizationDto): Response<Unit>
+    suspend fun createOrganization(@Body organizationCreateRequest: OrganizationCreateRequest): Response<Unit>
 
 //    @GET("profiles/{id}/favorites")
 //    suspend fun fetchFavorites(@Path("id") id: Int): FavoriteTourResponse

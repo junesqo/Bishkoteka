@@ -3,7 +3,7 @@ package kg.bishkoteka.data.remote
 import kg.bishkoteka.data.local.preferences.UserPreferences
 
 import kg.bishkoteka.data.remote.apiservice.auth.RefreshAccessTokenApiService
-import kg.bishkoteka.data.remote.dto.auth.RefreshTokenDto
+import kg.bishkoteka.data.models.get.auth.RefreshTokenResponse
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.Route
@@ -22,7 +22,7 @@ class Authenticator @Inject constructor(
                     userDataPreferencesManager.accessToken = tokenResponse.body()?.access
                     userDataPreferencesManager.refreshToken = tokenResponse.body()?.refresh
                     response.request.newBuilder()
-                        .addHeader("Authorization", "Bearer ${tokenResponse.body()}")
+                        .addHeader("Authorization", "Bearer ${tokenResponse.body()?.access}")
                         .build()
                 }
                 tokenResponse?.code() == 401 -> {
@@ -38,7 +38,7 @@ class Authenticator @Inject constructor(
     private fun getRefreshedToken() =
         userDataPreferencesManager.refreshToken?.let {
             refreshAccessTokenApiService.refreshTokens(
-                RefreshTokenDto(it)
+                RefreshTokenResponse(it)
             )
         }
 }

@@ -9,12 +9,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kg.bishkoteka.R
 import kg.bishkoteka.core.base.BaseFragment
 import kg.bishkoteka.core.extensions.navigateSafely
-import kg.bishkoteka.data.remote.dto.events.CategoryModel
-import kg.bishkoteka.data.remote.dto.organization.OrganizationDto
+import kg.bishkoteka.data.models.get.organization.OrganizationResponse
 import kg.bishkoteka.databinding.FragmentMyOrganizationsBinding
-import kg.bishkoteka.ui.fragments.main.adapters.CategoryAdapter
 import kg.bishkoteka.ui.fragments.main.adapters.OrganizationAdapter
-import kg.bishkoteka.ui.fragments.main.home.HomeFragment
 
 @AndroidEntryPoint
 class MyOrganizationsFragment :
@@ -24,7 +21,7 @@ class MyOrganizationsFragment :
     )
     override val viewModel by viewModels<MyOrganizationsViewModel>()
     private val organizationAdapter by lazy { OrganizationAdapter(this::onOrganizationClick) }
-    private val myOrganizationsList = arrayListOf<OrganizationDto>()
+    private val myOrganizationsList = arrayListOf<OrganizationResponse>()
 
     override fun initialize() {
         super.initialize()

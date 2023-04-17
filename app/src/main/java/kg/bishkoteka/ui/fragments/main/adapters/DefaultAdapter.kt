@@ -6,7 +6,7 @@
 //import androidx.paging.PagingDataAdapter
 //import androidx.recyclerview.widget.RecyclerView
 //import kg.bishkoteka.core.network.paging.BaseDiffUtilItemCallback
-//import kg.bishkoteka.data.remote.dto.events.EventModel
+//import kg.bishkoteka.data.models.get.events.EventModel
 //
 //class DefaultAdapter(val onTourClick: (String) -> Unit) :
 //    PagingDataAdapter<EventModel, DefaultAdapter.TourModelPagingViewHolder>(

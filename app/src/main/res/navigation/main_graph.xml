@@ -13,10 +13,7 @@
         <action
             android:id="@+id/action_homeFragment_to_detailsFragment"
             app:destination="@id/detailsFragment">
-            <argument
-                android:name="eventId"
-                app:argType="integer"
-                android:defaultValue="1" />
+
         </action>
         <action
             android:id="@+id/action_homeFragment_to_filteredEventsFragment"
@@ -43,12 +40,15 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="kg.bishkoteka.ui.fragments.main.profile.ProfileFragment"
+        android:name="kg.bishkoteka.ui.fragments.main.profile.my_profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_profileFragment_to_myOrganizationsFragment"
             app:destination="@id/myOrganizationsFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_profileEditFragment"
+            app:destination="@id/profileEditFragment" />
     </fragment>
 
     <fragment
@@ -59,17 +59,15 @@
         <action
             android:id="@+id/action_filteredEventsFragment_to_detailsFragment"
             app:destination="@id/detailsFragment">
-            <argument
-                android:name="categoryId"
-                app:argType="integer"
-                android:defaultValue="1" />
+
         </action>
     </fragment>
     <fragment
         android:id="@+id/createOrganizationFragment"
         android:name="kg.bishkoteka.ui.fragments.main.organization.create_organization.OrganizationCreateFragment"
         android:label="OrganizationCreateFragment"
-        tools:layout="@layout/fragment_organization_create"/>
+        tools:layout="@layout/fragment_organization_create">
+    </fragment>
     <fragment
         android:id="@+id/myOrganizationsFragment"
         android:name="kg.bishkoteka.ui.fragments.main.organization.my_organizations.MyOrganizationsFragment"
@@ -97,6 +95,11 @@
         android:name="kg.bishkoteka.ui.fragments.main.event.create_event.CreateEventFragment"
         android:label="CreateEventFragment"
         tools:layout="@layout/fragment_create_event"/>
+    <fragment
+        android:id="@+id/profileEditFragment"
+        android:name="kg.bishkoteka.ui.fragments.main.profile.edit_profile.ProfileEditFragment"
+        android:label="ProfileEditFragment"
+        tools:layout="@layout/fragment_profile_edit"/>
 
 
 </navigation>

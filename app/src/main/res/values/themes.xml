@@ -38,7 +38,7 @@
         <item name="chipCornerRadius">8dp</item>
         <item name="chipStartPadding">4dp</item>
         <item name="chipEndPadding">4dp</item>
-        <item name="background">@color/grey_400</item>
+        <item name="background">@color/fragment_bg</item>
     </style>
 
     <style name="DefaultBigButton" parent="Widget.Material3.Button">

@@ -9,7 +9,9 @@ import kg.bishkoteka.R
 import kg.bishkoteka.core.base.BaseFragment
 import kg.bishkoteka.core.extensions.addChip
 import kg.bishkoteka.core.extensions.toDate
+import kg.bishkoteka.data.models.get.events.CommentResponse
 import kg.bishkoteka.databinding.FragmentEventDetailsBinding
+import kg.bishkoteka.ui.fragments.main.adapters.CommentAdapter
 import kg.bishkoteka.ui.fragments.main.all.FilteredEventsFragment.Companion.KEY_DETAIL_EVENT_FILTERED
 
 import kg.bishkoteka.ui.fragments.main.home.HomeFragment.Companion.KEY_DETAIL_EVENT_HOME
@@ -19,8 +21,8 @@ class EventDetailsFragment :
     BaseFragment<FragmentEventDetailsBinding, EventDetailsViewModel>(R.layout.fragment_event_details) {
     override val binding: FragmentEventDetailsBinding by viewBinding(FragmentEventDetailsBinding::bind)
     override val viewModel by viewModels<EventDetailsViewModel>()
-//    private val categoryAdapter by lazy { CategoryAdapter(this::onCategoryClick) }
-
+    private val commentAdapter by lazy { CommentAdapter() }
+    private val commentsList = arrayListOf<CommentResponse>()
     private var eventId: Int = -1
 
     override fun initRequest() {
@@ -33,6 +35,13 @@ class EventDetailsFragment :
         super.initSubscribers()
         Log.e("initSubscribers", "Success")
         collectEventById()
+    }
+
+    override fun initListeners() {
+        super.initListeners()
+        binding.btnSend.setOnClickListener {
+
+        }
     }
 
     private fun getEventById() {
@@ -55,17 +64,27 @@ class EventDetailsFragment :
                 Log.e("Model chips", model.categories.toString())
                 tags.apply {
                     removeAllViews()
-                    addChip("Вход " + model.entry + " сом")
+                    addChip("Вход " + model.entry)
                     if (model.price == 0) {
                         addChip("Бесплатно")
                     } else {
-                        addChip("от " + model.price.toString())
+                        addChip("от " + model.price.toString() + " сом")
                     }
                     if (model.categories.isNullOrEmpty()){} else {
                         model.categories.forEach { tag -> addChip(tag.title)}
                     }
-
                 }
+                commentsList.clear()
+                if (model.comments.isNullOrEmpty()) {
+                    tvNoComments.visibility = View.VISIBLE
+                    rvComments.visibility = View.GONE
+                } else {
+                    tvNoComments.visibility = View.GONE
+                    rvComments.visibility = View.VISIBLE
+                    model.comments?.let { commentsList.addAll(it) }
+                    commentAdapter.addData(commentsList)
+                }
+
 //                tags.apply {
 //                    if (model.categories.isNullOrEmpty()){
 //                        tags.visibility = View.GONE
@@ -86,20 +105,26 @@ class EventDetailsFragment :
     override fun initialize() {
         super.initialize()
         initId()
+        initAdapters()
+    }
+
+    private fun initAdapters() {
+        with(binding) {
+            rvComments.adapter = commentAdapter
+        }
     }
 
     private fun initId() {
         checkId(KEY_DETAIL_EVENT_HOME)
         checkId(KEY_DETAIL_EVENT_FILTERED)
-//        checkSlug(KEY_DETAIL_TOUR_BY_WORD)
-//        checkSlug(KEY_DETAIL_TOUR_FAVORITE)
     }
     private fun checkId(key: String) {
-        if (arguments?.getInt(key) != null) {
+        if (arguments?.getInt(key) != 0) {
             eventId = arguments?.getInt(key)!!
             Log.e("checkId", "Success")
             Log.e("checkId", eventId.toString())
+        } else {
+            Log.e("checkId", "Fail $key")
         }
     }
-
 }

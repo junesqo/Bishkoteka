@@ -1,8 +1,8 @@
-package kg.bishkoteka.data.remote.dto.auth
+package kg.bishkoteka.data.models.post.auth
 
 import com.google.gson.annotations.SerializedName
 
-data class SignUpDto(
+data class SignUpRequest(
     @SerializedName("username")
     val username: String,
     @SerializedName("email")

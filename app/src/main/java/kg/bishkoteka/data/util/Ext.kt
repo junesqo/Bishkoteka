@@ -5,10 +5,10 @@ import android.content.Intent
 import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import kg.bishkoteka.data.remote.dto.events.FilterModel
+import kg.bishkoteka.data.models.post.events.EventFilterModel
 
 
-fun FilterModel.changeFilter(newFilter: FilterModel) {
+fun EventFilterModel.changeFilter(newFilter: EventFilterModel) {
     this.category = newFilter.category
     this.keyword = newFilter.keyword
 //    this.complexity = newFilter.complexity

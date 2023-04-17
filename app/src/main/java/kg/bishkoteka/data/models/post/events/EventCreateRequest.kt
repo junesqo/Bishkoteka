@@ -1,8 +1,8 @@
-package kg.bishkoteka.data.remote.dto.events
+package kg.bishkoteka.data.models.post.events
 
 import com.google.gson.annotations.SerializedName
 
-data class CreateEventDto(
+data class EventCreateRequest(
     @SerializedName("id")
     val organizationId: Int,
     @SerializedName("title")

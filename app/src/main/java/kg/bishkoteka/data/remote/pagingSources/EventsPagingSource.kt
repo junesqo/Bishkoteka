@@ -1,16 +1,15 @@
 package kg.bishkoteka.data.remote.pagingSources
 
 import kg.bishkoteka.core.network.paging.BasePagingSource
-import kg.bishkoteka.data.remote.apiservice.events.EventsApiService
 import kg.bishkoteka.data.remote.apiservice.events.PagingApiService
-import kg.bishkoteka.data.remote.dto.events.EventModel
-import kg.bishkoteka.data.remote.dto.events.EventsResponse
-import kg.bishkoteka.data.remote.dto.events.FilterModel
+import kg.bishkoteka.data.models.get.events.EventResponse
+import kg.bishkoteka.data.models.get.events.EventsResponse
+import kg.bishkoteka.data.models.post.events.EventFilterModel
 
 class EventsPagingSource(
-    private val pagingApiService: PagingApiService, filter: FilterModel,
+    private val pagingApiService: PagingApiService, filter: EventFilterModel,
 ) :
-    BasePagingSource<EventsResponse, EventModel>({
+    BasePagingSource<EventsResponse, EventResponse>({
         pagingApiService.getFilteredEvents(it,
             categoryId = filter.category,
             searchQuery = filter.keyword,

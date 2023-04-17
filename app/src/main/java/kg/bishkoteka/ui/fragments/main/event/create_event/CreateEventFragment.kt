@@ -9,12 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kg.bishkoteka.R
 import kg.bishkoteka.core.base.BaseFragment
-import kg.bishkoteka.data.remote.dto.events.CreateEventDto
+import kg.bishkoteka.data.models.post.events.EventCreateRequest
 import kg.bishkoteka.data.util.showToast
 import kg.bishkoteka.databinding.FragmentCreateEventBinding
-import kg.bishkoteka.ui.fragments.main.organization.my_organizations.MyOrganizationsFragment
 import kg.bishkoteka.ui.fragments.main.organization.organization_details.OrganizationDetailsFragment.Companion.KEY_ORGANIZATION_DETAIL
 import java.text.SimpleDateFormat
 import java.util.*
@@ -92,7 +90,7 @@ class CreateEventFragment :
                 ) {
                     viewModel.createEvent(
                         organizationId,
-                        CreateEventDto(
+                        EventCreateRequest(
                             organizationId = organizationId,
                             title = etEventTitle.text.toString(),
                             description = etEventDescription.text.toString(),

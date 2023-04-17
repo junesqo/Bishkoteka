@@ -1,11 +1,10 @@
-package kg.bishkoteka.ui.fragments.main.profile
+package kg.bishkoteka.ui.fragments.main.profile.my_profile
 
 import android.util.Log
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.google.android.material.tabs.TabLayoutMediator
 import kg.bishkoteka.core.base.BaseFragment
 import kg.bishkoteka.data.local.preferences.UserPreferences
 import dagger.hilt.android.AndroidEntryPoint
@@ -13,7 +12,7 @@ import kg.bishkoteka.R
 import kg.bishkoteka.core.extensions.activityNavController
 import kg.bishkoteka.core.extensions.navigateSafely
 import kg.bishkoteka.databinding.FragmentProfileBinding
-import kg.bishkoteka.ui.fragments.main.adapters.ViewPagerAdapter
+import kg.bishkoteka.ui.fragments.main.profile.ProfileViewModel
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -26,6 +25,9 @@ class ProfileFragment :
     lateinit var userPreferences: UserPreferences
 
     override fun initListeners() {
+        binding.btnEditProfile.setOnClickListener {
+            findNavController().navigateSafely(R.id.action_profileFragment_to_profileEditFragment)
+        }
         binding.btnMyOrganizations.setOnClickListener {
             findNavController().navigateSafely(R.id.action_profileFragment_to_myOrganizationsFragment)
         }
@@ -61,6 +63,22 @@ class ProfileFragment :
                 binding.personalContainer.isVisible = false
                 binding.btnLogOut.isVisible = false
             }
+        }
+    }
+
+    override fun initRequest() {
+        super.initRequest()
+        getMyProfile()
+    }
+
+    private fun getMyProfile() {
+        viewModel.getMyProfile()
+        viewModel.getMyProfileState.collectUIState { response ->
+            binding.tvUsername.text = response.username
+            binding.tvName.text = response.first_name + " " + response.last_name
+            binding.tvFollowers.text = response.following_count.toString()
+            binding.tvEmail.text = response.email
+            Log.e("My profile", response.toString())
         }
     }
 

@@ -1,11 +1,9 @@
-package kg.bishkoteka.data.remote.dto.events
+package kg.bishkoteka.data.models.get.events
 
 import kg.bishkoteka.core.network.paging.BaseDiffModel
 
-data class CategoryModel(
-//    @SerializedName("id")
+data class CategoryResponse(
     val id: Int,
-//    @SerializedName("title")
     val title: String,
 )  : BaseDiffModel<Int> {
     override val idDif: Int

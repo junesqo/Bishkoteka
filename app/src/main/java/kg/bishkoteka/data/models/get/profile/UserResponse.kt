@@ -1,10 +1,8 @@
-package kg.bishkoteka.data.remote.dto.user
+package kg.bishkoteka.data.models.get.profile
 
 import com.google.gson.annotations.SerializedName
-import kg.bishkoteka.data.remote.dto.events.CategoryModel
-import kg.bishkoteka.data.remote.dto.events.EventModel
 
-data class UserDto(
+data class UserResponse(
     @SerializedName("id")
     val id: Int,
     @SerializedName("email")

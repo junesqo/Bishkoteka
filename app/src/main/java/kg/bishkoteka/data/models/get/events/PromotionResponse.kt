@@ -1,8 +1,8 @@
-package kg.bishkoteka.data.remote.dto.events
+package kg.bishkoteka.data.models.get.events
 
 import com.google.gson.annotations.SerializedName
 
-data class Promotion(
+data class PromotionResponse(
     @SerializedName("id")
     val id: Int,
     @SerializedName("title")

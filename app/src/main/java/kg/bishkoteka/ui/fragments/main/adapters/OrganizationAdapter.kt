@@ -3,16 +3,14 @@ package kg.bishkoteka.ui.fragments.main.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kg.bishkoteka.data.remote.dto.events.CategoryModel
-import kg.bishkoteka.data.remote.dto.organization.OrganizationDto
-import kg.bishkoteka.databinding.ItemCategoryBinding
+import kg.bishkoteka.data.models.get.organization.OrganizationResponse
 import kg.bishkoteka.databinding.ItemOrganizationBinding
 
 class OrganizationAdapter(private val onOrganizationClick: (Int) -> Unit) : RecyclerView.Adapter<OrganizationAdapter.OrganizationViewHolder>() {
 
-    private val data = arrayListOf<OrganizationDto>()
+    private val data = arrayListOf<OrganizationResponse>()
 
-    fun addData(newData: List<OrganizationDto>) {
+    fun addData(newData: List<OrganizationResponse>) {
         data.clear()
         data.addAll(newData)
         notifyDataSetChanged()
@@ -30,7 +28,7 @@ class OrganizationAdapter(private val onOrganizationClick: (Int) -> Unit) : Recy
     }
 
     inner class OrganizationViewHolder(private val binding: ItemOrganizationBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(model: OrganizationDto) {
+        fun bind(model: OrganizationResponse) {
             binding.tvOrganizationName.text = model.name
             binding.tvOrganizationType.text = model.type
             itemView.setOnClickListener {

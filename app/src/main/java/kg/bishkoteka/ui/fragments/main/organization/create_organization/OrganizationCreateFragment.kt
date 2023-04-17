@@ -7,7 +7,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kg.bishkoteka.R
 import kg.bishkoteka.core.base.BaseFragment
-import kg.bishkoteka.data.remote.dto.organization.CreateOrganizationDto
+import kg.bishkoteka.data.models.post.organization.OrganizationCreateRequest
 import kg.bishkoteka.data.util.showToast
 import kg.bishkoteka.databinding.FragmentOrganizationCreateBinding
 
@@ -22,7 +22,6 @@ class OrganizationCreateFragment :
     override fun initListeners() {
         super.initListeners()
         viewModel.createOrganization.collectUIState { Log.e("aga", "initListeners: success") }
-
         with(binding) {
             btnCreateOrganization.setOnClickListener {
                 if (etOrganizationName.text.toString()
@@ -30,7 +29,7 @@ class OrganizationCreateFragment :
                         .isNotEmpty() && etOrganizationType.text.toString().isNotEmpty()
                 ) {
                     viewModel.createOrganization(
-                        CreateOrganizationDto(
+                        OrganizationCreateRequest(
                             name = etOrganizationName.text.toString(),
                             type = etOrganizationType.text.toString(),
                             description = etOrganizationDescription.text.toString(),

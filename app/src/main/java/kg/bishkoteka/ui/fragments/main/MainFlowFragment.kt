@@ -1,5 +1,6 @@
 package kg.bishkoteka.ui.fragments.main
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -25,7 +26,7 @@ class MainFlowFragment :
         super.onActivityCreated(savedInstanceState)
         navController =
             (requireActivity() as AppCompatActivity).findNavController(R.id.nav_host_fragment_main)
-//        setActionbar()
+        setActionbar()
     }
 
     override fun setupNavigation(navController: NavController) {
@@ -60,28 +61,43 @@ class MainFlowFragment :
     }
 
     private val hideActionBarDestinations = setOf(
-        R.id.homeFragment,
-//        R.id.detailsFragment,
+//        R.id.homeFragment,
+        R.id.detailsFragment,
         R.id.favoriteFragment,
-        R.id.profileFragment,
+//        R.id.profileFragment,
+        R.id.myOrganizationsFragment,
+        R.id.organizationDetailsFragment,
+        R.id.createEventFragment,
+        R.id.createOrganizationFragment,
+        R.id.profileEditFragment
     )
 
-//    private fun setActionbar() {
-//        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
-//        navController.addOnDestinationChangedListener { _, destination, _ ->
-//
-//            if (destination.id == R.id.profileFragment)
-//                setStatusBarColor(R.color.fragment_bg)
-//
-//            binding.toolbar.isVisible = hideActionBarDestinations.contains(destination.id)
-//            binding.toolbar.navigationIcon =
-//                when (hideActionBarDestinations.contains(destination.id)) {
-//                    true -> ContextCompat.getDrawable(requireContext(), R.drawable.back)
-//                    false -> null
-//                }
-//        }
-//        binding.toolbar.setNavigationOnClickListener {
-//            navController.navigateUp()
-//        }
-//    }
+    private fun setActionbar() {
+        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+
+            when(destination.id) {
+                R.id.myOrganizationsFragment -> binding.toolbar.setTitle("Мои организации")
+                R.id.organizationDetailsFragment -> binding.toolbar.setTitle("Мои организации")
+                R.id.detailsFragment -> binding.toolbar.setTitle("Мероприятие")
+                R.id.createEventFragment -> binding.toolbar.setTitle("Новое событие")
+                R.id.createOrganizationFragment -> binding.toolbar.setTitle("Новая организация")
+                R.id.profileEditFragment -> binding.toolbar.setTitle("Редактирование")
+            }
+//            if (destination.id == R.id.myOrganizationsFragment) {
+//                binding.toolbar.setTitle("Мои организации")
+////                setStatusBarColor(R.color.fragment_bg)
+//            }
+
+            binding.toolbar.isVisible = hideActionBarDestinations.contains(destination.id)
+            binding.toolbar.navigationIcon =
+                when (hideActionBarDestinations.contains(destination.id)) {
+                    true -> ContextCompat.getDrawable(requireContext(), R.drawable.back)
+                    false -> null
+                }
+        }
+        binding.toolbar.setNavigationOnClickListener {
+            navController.navigateUp()
+        }
+    }
 }

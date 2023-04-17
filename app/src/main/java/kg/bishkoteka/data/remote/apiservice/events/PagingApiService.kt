@@ -1,9 +1,8 @@
 package kg.bishkoteka.data.remote.apiservice.events
 
-import kg.bishkoteka.data.remote.dto.events.EventsResponse
+import kg.bishkoteka.data.models.get.events.EventsResponse
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface PagingApiService {

@@ -1,19 +1,16 @@
 package kg.bishkoteka.ui.fragments.main.all
 
-import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kg.bishkoteka.R
 import kg.bishkoteka.core.base.BaseFragment
-import kg.bishkoteka.data.remote.dto.events.FilterModel
+import kg.bishkoteka.data.models.post.events.EventFilterModel
 import kg.bishkoteka.databinding.FragmentFilteredEventsBinding
 import kg.bishkoteka.ui.fragments.main.adapters.FilteredEventsAdapter
 import kg.bishkoteka.ui.fragments.main.home.HomeFragment.Companion.KEY_CATEGORY_HOME
-import kg.bishkoteka.ui.fragments.main.home.HomeFragment.Companion.KEY_FILTER
 
 @Suppress("DEPRECATION")
 @AndroidEntryPoint
@@ -22,7 +19,7 @@ class FilteredEventsFragment :
 
     override val binding by viewBinding(FragmentFilteredEventsBinding::bind)
     override val viewModel by viewModels<FilteredEventsViewModel>()
-        private val filter by lazy { arguments?.getSerializable(KEY_CATEGORY_HOME) as FilterModel }
+        private val filter by lazy { arguments?.getSerializable(KEY_CATEGORY_HOME) as EventFilterModel }
 //    private val categoryId: Int = requireArguments().getInt(KEY_CATEGORY_HOME, 0)
 //    private val filterModel = FilterModel("", categoryId)
     private val filteredEventsAdapter by lazy { FilteredEventsAdapter(this::onEventClick) }
@@ -30,7 +27,6 @@ class FilteredEventsFragment :
     override fun initialize() {
         super.initialize()
         initAdapter()
-//        initCategory()
     }
 
     private fun initAdapter(){
@@ -52,7 +48,6 @@ class FilteredEventsFragment :
     }
 
     private fun getEvents() {
-
         viewModel.setFilter(filter)
         viewModel.getFilteredEvents()
     }

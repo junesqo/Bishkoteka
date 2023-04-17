@@ -1,34 +1,23 @@
-package kg.bishkoteka.data.remote.dto.events
+package kg.bishkoteka.data.models.get.events
 
 import kg.bishkoteka.core.network.paging.BaseDiffModel
+import kg.bishkoteka.data.models.get.profile.UserResponse
 
-data class EventModel(
-//    @SerializedName("id")
+data class EventResponse(
     val id: Int,
     val moderation_status: String,
-//    @SerializedName("title")
     val title: String,
-//    @SerializedName("description")
     val description: String,
-//    @SerializedName("price")
     val price: Int,
-//    @SerializedName("organization")
     val organization: String,
-//    @SerializedName("location")
     val location: String,
-//    @SerializedName("entry")
     val entry: String,
-//    @SerializedName("start_time")
     val start_time: Long,
-//    @SerializedName("end_time")
     val end_time: Long,
-//    @SerializedName("categories")
-    val categories: List<CategoryModel>?,
-//    @SerializedName("comments")
-    val interested: List<CustomUser>?,
-    val comments: List<Comment>?,
-//    @SerializedName("promotion")
-    val promotion: Promotion?
+    val categories: List<CategoryResponse>?,
+    val interested: List<UserResponse>?,
+    val comments: List<CommentResponse>?,
+    val promotionResponse: PromotionResponse?
 ) : BaseDiffModel<Int> {
     override val idDif: Int
         get() = this.id

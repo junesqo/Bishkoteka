@@ -8,11 +8,11 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import kg.bishkoteka.core.extensions.toDate
 import kg.bishkoteka.core.network.paging.BaseDiffUtilItemCallback
-import kg.bishkoteka.data.remote.dto.events.EventModel
+import kg.bishkoteka.data.models.get.events.EventResponse
 import kg.bishkoteka.databinding.ItemDefaultEventBinding
 
 class EventAdapter(val onEventClick: (Int) -> Unit) :
-    PagingDataAdapter<EventModel, EventAdapter.EventModelPagingViewHolder>(
+    PagingDataAdapter<EventResponse, EventAdapter.EventModelPagingViewHolder>(
         BaseDiffUtilItemCallback()
     ) {
 
@@ -33,7 +33,7 @@ class EventAdapter(val onEventClick: (Int) -> Unit) :
         private val binding: ItemDefaultEventBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
-        fun bind(model: EventModel) {
+        fun bind(model: EventResponse) {
             with(binding.inDefaultEvent) {
                 tvEventTitle.text = model.title
                 tvEventDatetime.text = model.start_time.toString()

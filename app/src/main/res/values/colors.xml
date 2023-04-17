@@ -13,7 +13,8 @@
     <color name="grey">#FFCCCCCC</color>
     <color name="grey_50">#F7F8FA</color>
     <color name="grey_400">#F0F2F5</color>
-    <color name="grey_text">#8F9092</color>
+<!--    <color name="grey_text">#8F9092</color>-->
+    <color name="grey_text">#9586A8</color>
     <color name="blue">#FF1976D2</color>
     <color name="fragment_bg">#F0F1F6</color>
     <color name="selected_bg">#E2CBFF</color>

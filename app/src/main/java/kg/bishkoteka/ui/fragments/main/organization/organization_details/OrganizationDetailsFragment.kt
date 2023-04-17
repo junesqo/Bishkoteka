@@ -1,7 +1,12 @@
 package kg.bishkoteka.ui.fragments.main.organization.organization_details
 
+import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -29,6 +34,29 @@ class OrganizationDetailsFragment :
     override val viewModel by viewModels<OrganizationDetailsViewModel>()
     private var organizationId: Int = -1
     private val eventsAdapter by lazy { FilteredEventsAdapter(this::onEventClick) }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        // Inflate the menu specific to this Fragment
+        inflater.inflate(R.menu.menu_organization_details, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_edit_organization -> {
+                Toast.makeText(requireContext(), "click on setting", Toast.LENGTH_LONG).show()
+                true
+            }
+            R.id.menu_delete_organization ->{
+                Toast.makeText(requireContext(), "click on share", Toast.LENGTH_LONG).show()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     private fun onEventClick(id: Int) {
 //        TODO("Сделать PATCH запрос чтобы менять ивент")

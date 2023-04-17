@@ -41,9 +41,12 @@ class SignInFragment :
             userPreferences.refreshToken = it.refresh
             userPreferences.isAuthenticated = true
             userPreferences.userID = it.id.toString()
+            Log.e("AccountDTO", it.toString())
             Log.e("userId", userPreferences.userID.toString())
-            userPreferences.username = it.username
-            userPreferences.userEmail = it.email
+//            Log.e("username", userPreferences.username.toString())
+//            Log.e("useremail", userPreferences.userEmail.toString())
+//            userPreferences.username = it.username
+//            userPreferences.userEmail = it.email
             userPreferences.password = binding.etPassword.text.toString()
             activityNavController().navigateSafely(R.id.action_authenticationFlowFragment_to_mainFlowFragment)
         }, error = {

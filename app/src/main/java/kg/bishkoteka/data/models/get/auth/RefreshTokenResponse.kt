@@ -1,8 +1,8 @@
-package kg.bishkoteka.data.remote.dto.auth
+package kg.bishkoteka.data.models.get.auth
 
 import com.google.gson.annotations.SerializedName
 
-data class RefreshTokenDto(
+data class RefreshTokenResponse(
     @SerializedName("refresh")
     val refresh: String
 )

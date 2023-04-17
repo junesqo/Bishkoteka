@@ -1,8 +1,8 @@
-package kg.bishkoteka.data.remote.dto.organization
+package kg.bishkoteka.data.models.post.organization
 
 import com.google.gson.annotations.SerializedName
 
-data class CreateOrganizationDto(
+data class OrganizationCreateRequest(
     @SerializedName("name")
     val name: String,
     @SerializedName("description")

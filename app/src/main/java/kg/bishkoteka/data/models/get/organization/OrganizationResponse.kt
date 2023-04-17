@@ -1,10 +1,9 @@
-package kg.bishkoteka.data.remote.dto.organization
+package kg.bishkoteka.data.models.get.organization
 
-import com.google.gson.annotations.SerializedName
 import kg.bishkoteka.core.network.paging.BaseDiffModel
-import kg.bishkoteka.data.remote.dto.events.EventModel
+import kg.bishkoteka.data.models.get.events.EventResponse
 
-data class OrganizationDto(
+data class OrganizationResponse(
     val id: Int,
     val user_id: Int,
     val name: String,
@@ -13,7 +12,7 @@ data class OrganizationDto(
     val phone_number: String,
     val address: String,
     val insta_link: String,
-    val events: List<EventModel>,
+    val events: List<EventResponse>,
     val following_count: Int
 ) : BaseDiffModel<Int> {
     override val idDif: Int
