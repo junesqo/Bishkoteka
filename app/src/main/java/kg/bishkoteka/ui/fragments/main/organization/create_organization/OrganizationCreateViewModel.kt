@@ -16,6 +16,7 @@ class OrganizationCreateViewModel @Inject constructor(private val organizationRe
     private val _createOrganizationState = MutableStateFlow<UIState<Unit>>(UIState.Idle())
     val createOrganization = _createOrganizationState.asStateFlow()
 
+//    fun createOrganization(organization: OrganizationCreateRequest) = organizationRepository.createOrganization(organization).collectFlow(_createOrganizationState)
     fun createOrganization(organization: OrganizationCreateRequest) = organizationRepository.createOrganization(organization).collectFlow(_createOrganizationState)
 
 }

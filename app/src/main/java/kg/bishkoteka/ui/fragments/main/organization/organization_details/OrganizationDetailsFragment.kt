@@ -5,24 +5,17 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kg.bishkoteka.R
 import kg.bishkoteka.core.base.BaseFragment
-import kg.bishkoteka.core.extensions.addChip
-import kg.bishkoteka.core.extensions.navigateSafely
-import kg.bishkoteka.core.extensions.toDate
 import kg.bishkoteka.databinding.FragmentOrganizationDetailsBinding
-import kg.bishkoteka.ui.fragments.main.adapters.FilteredEventsAdapter
-import kg.bishkoteka.ui.fragments.main.adapters.ViewPagerAdapter
+import kg.bishkoteka.ui.fragments.main.adapters.WideEventsAdapter
 import kg.bishkoteka.ui.fragments.main.all.FilteredEventsFragment
-import kg.bishkoteka.ui.fragments.main.home.HomeFragment
 import kg.bishkoteka.ui.fragments.main.organization.my_organizations.MyOrganizationsFragment.Companion.KEY_MY_ORGANIZATION_DETAIL
 
 @AndroidEntryPoint
@@ -33,7 +26,7 @@ class OrganizationDetailsFragment :
     )
     override val viewModel by viewModels<OrganizationDetailsViewModel>()
     private var organizationId: Int = -1
-    private val eventsAdapter by lazy { FilteredEventsAdapter(this::onEventClick) }
+    private val eventsAdapter by lazy { WideEventsAdapter(this::onEventClick) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

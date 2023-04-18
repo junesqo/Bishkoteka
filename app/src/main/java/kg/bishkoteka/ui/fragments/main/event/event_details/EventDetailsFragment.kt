@@ -3,6 +3,7 @@ package kg.bishkoteka.ui.fragments.main.event.event_details
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kg.bishkoteka.R
@@ -10,6 +11,8 @@ import kg.bishkoteka.core.base.BaseFragment
 import kg.bishkoteka.core.extensions.addChip
 import kg.bishkoteka.core.extensions.toDate
 import kg.bishkoteka.data.models.get.events.CommentResponse
+import kg.bishkoteka.data.models.post.events.CommentRequest
+import kg.bishkoteka.data.models.post.organization.OrganizationCreateRequest
 import kg.bishkoteka.databinding.FragmentEventDetailsBinding
 import kg.bishkoteka.ui.fragments.main.adapters.CommentAdapter
 import kg.bishkoteka.ui.fragments.main.all.FilteredEventsFragment.Companion.KEY_DETAIL_EVENT_FILTERED
@@ -40,7 +43,17 @@ class EventDetailsFragment :
     override fun initListeners() {
         super.initListeners()
         binding.btnSend.setOnClickListener {
-
+            if (binding.etComment.text.toString().isNotEmpty()) {
+                viewModel.addComment(
+                    eventId = eventId,
+                    CommentRequest(
+                        text = binding.etComment.text.toString()
+                    )
+                )
+                viewModel.addComment.collectUIState {
+                    binding.etComment.text.clear()
+                }
+            }
         }
     }
 
@@ -50,7 +63,6 @@ class EventDetailsFragment :
     }
 
     private fun collectEventById() {
-
         viewModel.getEventByIdState.collectUIState { model ->
             with(binding) {
                 Log.e("collectEventById", "Success")

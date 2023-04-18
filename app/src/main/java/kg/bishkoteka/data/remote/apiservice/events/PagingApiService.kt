@@ -1,6 +1,7 @@
 package kg.bishkoteka.data.remote.apiservice.events
 
-import kg.bishkoteka.data.models.get.events.EventsResponse
+import kg.bishkoteka.data.models.get.events.OnetimeEventsResponse
+import kg.bishkoteka.data.models.get.events.RegularEventsResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -14,6 +15,14 @@ interface PagingApiService {
         @Query("keyword") searchQuery: String,
         @Query("category") categoryId: String,
         @Query("start_time") startTime: String
-    ): Response<EventsResponse>
+    ): Response<OnetimeEventsResponse>
+
+    @GET("events/regular/")
+    suspend fun getRegularEvents(
+        @Query("offset") offset: Int = 0,
+        @Query("limit") limit: Int = 1,
+        @Query("keyword") searchQuery: String,
+        @Query("category") categoryId: String
+    ): Response<RegularEventsResponse>
 
 }

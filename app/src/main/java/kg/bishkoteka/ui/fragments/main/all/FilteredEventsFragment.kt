@@ -7,9 +7,9 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kg.bishkoteka.R
 import kg.bishkoteka.core.base.BaseFragment
-import kg.bishkoteka.data.models.post.events.EventFilterModel
+import kg.bishkoteka.data.models.post.events.OnetimeEventFilter
 import kg.bishkoteka.databinding.FragmentFilteredEventsBinding
-import kg.bishkoteka.ui.fragments.main.adapters.FilteredEventsAdapter
+import kg.bishkoteka.ui.fragments.main.adapters.WideEventsAdapter
 import kg.bishkoteka.ui.fragments.main.home.HomeFragment.Companion.KEY_CATEGORY_HOME
 
 @Suppress("DEPRECATION")
@@ -19,10 +19,10 @@ class FilteredEventsFragment :
 
     override val binding by viewBinding(FragmentFilteredEventsBinding::bind)
     override val viewModel by viewModels<FilteredEventsViewModel>()
-        private val filter by lazy { arguments?.getSerializable(KEY_CATEGORY_HOME) as EventFilterModel }
+        private val filter by lazy { arguments?.getSerializable(KEY_CATEGORY_HOME) as OnetimeEventFilter }
 //    private val categoryId: Int = requireArguments().getInt(KEY_CATEGORY_HOME, 0)
 //    private val filterModel = FilterModel("", categoryId)
-    private val filteredEventsAdapter by lazy { FilteredEventsAdapter(this::onEventClick) }
+    private val wideEventsAdapter by lazy { WideEventsAdapter(this::onEventClick) }
 
     override fun initialize() {
         super.initialize()
@@ -30,7 +30,7 @@ class FilteredEventsFragment :
     }
 
     private fun initAdapter(){
-        binding.rvEvents.adapter = filteredEventsAdapter
+        binding.rvEvents.adapter = wideEventsAdapter
     }
 
     override fun initRequest() {
@@ -44,12 +44,12 @@ class FilteredEventsFragment :
     }
 
     private fun collectEvents() {
-        viewModel.getPagingEvent.spectatePaging { filteredEventsAdapter.submitData(it) }
+        viewModel.getPagingOnetimeEvent.spectatePaging { wideEventsAdapter.submitData(it) }
     }
 
     private fun getEvents() {
-        viewModel.setFilter(filter)
-        viewModel.getFilteredEvents()
+        viewModel.setOnetimeFilter(filter)
+        viewModel.getOnetimeEvents()
     }
 
     private fun onEventClick(id: Int) {

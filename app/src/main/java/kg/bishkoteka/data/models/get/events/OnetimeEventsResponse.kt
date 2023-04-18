@@ -2,13 +2,13 @@ package kg.bishkoteka.data.models.get.events
 
 import kg.bishkoteka.core.network.paging.DataMapper
 
-data class EventsResponse(
+data class OnetimeEventsResponse(
     val count: Int,
     val next: String,
     val previous: Any,
-    val results: List<EventResponse>,
-) : DataMapper<EventResponse> {
-    override fun responseToModel(): List<EventResponse> = this.results
+    val results: List<OnetimeEventResponse>,
+) : DataMapper<OnetimeEventResponse> {
+    override fun responseToModel(): List<OnetimeEventResponse> = this.results
 }
 
 //data class EventsResponseDto(

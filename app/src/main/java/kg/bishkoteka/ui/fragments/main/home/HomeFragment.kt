@@ -12,17 +12,19 @@ import dagger.hilt.android.AndroidEntryPoint
 import kg.bishkoteka.R
 import kg.bishkoteka.core.base.BaseFragment
 import kg.bishkoteka.data.models.get.events.CategoryResponse
-import kg.bishkoteka.data.models.post.events.EventFilterModel
+import kg.bishkoteka.data.models.post.events.OnetimeEventFilter
 import kg.bishkoteka.databinding.FragmentHomeBinding
 import kg.bishkoteka.ui.fragments.main.adapters.CategoryAdapter
-import kg.bishkoteka.ui.fragments.main.adapters.EventAdapter
+import kg.bishkoteka.ui.fragments.main.adapters.OnetimeEventAdapter
+import kg.bishkoteka.ui.fragments.main.adapters.RegularEventsAdapter
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.fragment_home) {
     override val binding: FragmentHomeBinding by viewBinding(FragmentHomeBinding::bind)
     override val viewModel by viewModels<HomeViewModel>()
-    private val filter by lazy { EventFilterModel() }
-    private val eventAdapter by lazy { EventAdapter(this::onEventClick) }
+    private val onetimeFilter by lazy { OnetimeEventFilter() }
+    private val onetimeEventAdapter by lazy { OnetimeEventAdapter(this::onEventClick) }
+    private val regularEventAdapter by lazy { RegularEventsAdapter(this::onEventClick) }
     private val categoryAdapter by lazy { CategoryAdapter(this::onCategoryClick) }
     private val categoriesList = arrayListOf<CategoryResponse>()
 
@@ -34,37 +36,31 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
     override fun initRequest() {
         super.initRequest()
-        getEvents()
         getCategories()
-    }
-
-    override fun initSubscribers() {
-        super.initSubscribers()
-//        subscribeDefaultEvents()
-        subscribeNotFilteredEvents()
-        getCategoriesState()
+        getOnetimeEvents()
+        getRegularEvents()
     }
 
     private fun initAdapters() {
         with(binding) {
-            rvEvents.adapter = eventAdapter
+            rvEvents.adapter = onetimeEventAdapter
             rvCategories.adapter = categoryAdapter
+            rvRegularEvents.adapter = regularEventAdapter
         }
     }
 
-    private fun subscribeNotFilteredEvents() {
-        viewModel.getPagingEvent.spectatePaging { eventAdapter.submitData(it)}
+    private fun getRegularEvents() {
+        viewModel.getRegularEvents()
+        viewModel.getPagingRegularEvent.spectatePaging { regularEventAdapter.submitData(it) }
     }
 
-    private fun getEvents() {
-        viewModel.getNotFilteredEvents()
+    private fun getOnetimeEvents() {
+        viewModel.getOnetimeEvents()
+        viewModel.getPagingOnetimeEvent.spectatePaging { onetimeEventAdapter.submitData(it)}
     }
 
     private fun getCategories() {
         viewModel.getCategories()
-    }
-
-    private fun getCategoriesState() {
         viewModel.getCategoriesState.collectUIState {
             categoriesList.clear()
             categoriesList.addAll(it)
@@ -87,11 +83,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(R.layout.f
 
     private fun onCategoryClick(categoryId: Int) {
         Log.e("Filter1", categoryId.toString())
-        filter.category = categoryId.toString()
+        onetimeFilter.category = categoryId.toString()
 //        findNavController().navigateSafelyWithArgs(R.id.action_homeFragment_to_filteredEventsFragment, categoryId)
         findNavController().navigate(
             R.id.filteredEventsFragment,
-            bundleOf(KEY_CATEGORY_HOME to filter)
+            bundleOf(KEY_CATEGORY_HOME to onetimeFilter)
         )
     }
 

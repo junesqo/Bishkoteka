@@ -1,7 +1,7 @@
 package kg.bishkoteka.data.models.get.organization
 
 import kg.bishkoteka.core.network.paging.BaseDiffModel
-import kg.bishkoteka.data.models.get.events.EventResponse
+import kg.bishkoteka.data.models.get.events.OnetimeEventResponse
 
 data class OrganizationResponse(
     val id: Int,
@@ -12,7 +12,7 @@ data class OrganizationResponse(
     val phone_number: String,
     val address: String,
     val insta_link: String,
-    val events: List<EventResponse>,
+    val events: List<OnetimeEventResponse>,
     val following_count: Int
 ) : BaseDiffModel<Int> {
     override val idDif: Int

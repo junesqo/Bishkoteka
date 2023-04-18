@@ -21,7 +21,6 @@ class OrganizationCreateFragment :
 
     override fun initListeners() {
         super.initListeners()
-        viewModel.createOrganization.collectUIState { Log.e("aga", "initListeners: success") }
         with(binding) {
             btnCreateOrganization.setOnClickListener {
                 if (etOrganizationName.text.toString()

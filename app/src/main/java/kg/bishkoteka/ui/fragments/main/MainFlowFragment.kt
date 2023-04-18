@@ -77,6 +77,7 @@ class MainFlowFragment :
         navController.addOnDestinationChangedListener { _, destination, _ ->
 
             when(destination.id) {
+//                R.id.homeFragment -> binding.toolbar.setTitle("Главная")
                 R.id.myOrganizationsFragment -> binding.toolbar.setTitle("Мои организации")
                 R.id.organizationDetailsFragment -> binding.toolbar.setTitle("Мои организации")
                 R.id.detailsFragment -> binding.toolbar.setTitle("Мероприятие")

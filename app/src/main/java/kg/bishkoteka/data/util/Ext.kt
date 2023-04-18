@@ -5,15 +5,26 @@ import android.content.Intent
 import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import kg.bishkoteka.data.models.post.events.EventFilterModel
+import kg.bishkoteka.data.models.post.events.OnetimeEventFilter
+import kg.bishkoteka.data.models.post.events.RegularEventFilter
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 
-fun EventFilterModel.changeFilter(newFilter: EventFilterModel) {
+fun OnetimeEventFilter.changeFilter(newFilter: OnetimeEventFilter) {
     this.category = newFilter.category
     this.keyword = newFilter.keyword
-//    this.complexity = newFilter.complexity
-//    this.duration = newFilter.duration
-//    this.price_max = newFilter.price_max
+    this.starttime = newFilter.starttime
+}
+
+fun RegularEventFilter.changeFilter(newFilter: RegularEventFilter) {
+    this.category = newFilter.category
+    this.keyword = newFilter.keyword
+}
+
+fun createPartFromString(stringData: String): RequestBody {
+    return stringData.toRequestBody("text/plain".toMediaTypeOrNull())
 }
 
 //fun List<Region>.getRegions(): String {

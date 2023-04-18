@@ -11,9 +11,11 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kg.bishkoteka.core.base.BaseFragment
 import kg.bishkoteka.data.models.post.events.EventCreateRequest
+import kg.bishkoteka.data.util.createPartFromString
 import kg.bishkoteka.data.util.showToast
 import kg.bishkoteka.databinding.FragmentCreateEventBinding
 import kg.bishkoteka.ui.fragments.main.organization.organization_details.OrganizationDetailsFragment.Companion.KEY_ORGANIZATION_DETAIL
+import okhttp3.RequestBody
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -47,6 +49,8 @@ class CreateEventFragment :
     var savedMinute = 0
 
     var millis: Long = 1657204941288
+
+    val map: MutableMap<String, RequestBody> = mutableMapOf()
 
     override fun initialize() {
         super.initialize()
@@ -82,24 +86,45 @@ class CreateEventFragment :
         binding.spinnerEntry.onItemSelectedListener = this
 
         with(binding) {
-            btnCreateOrganization.setOnClickListener {
+            btnCreateEvent.setOnClickListener {
                 if (etEventTitle.text.toString()
                         .isNotEmpty() && etEventStartTime.text.toString()
                         .isNotEmpty() && etEventLocation.text.toString()
                         .isNotEmpty() && etEventDescription.text.toString().isNotEmpty()
                 ) {
+                    val title = createPartFromString(etEventTitle.text.toString())
+                    val description = createPartFromString(etEventDescription.text.toString())
+                    val price = createPartFromString(etEventPrice.text.toString())
+                    val location = createPartFromString(etEventLocation.text.toString())
+                    val entry = createPartFromString(eventEntry)
+                    val start_time = createPartFromString(millis.toString())
+                    val end_time = createPartFromString(millis.plus(3600).toString())
+                    val images = createPartFromString("")
+                    val categories = createPartFromString("")
+                    val promotions = createPartFromString("")
+                    map.put("title", title)
+                    map.put("description", description)
+                    map.put("price", price)
+                    map.put("location", location)
+                    map.put("entry", entry)
+                    map.put("start_time", start_time)
+                    map.put("end_time", end_time)
+                    map.put("images", images)
+                    map.put("categories", categories)
+                    map.put("promotions", promotions)
                     viewModel.createEvent(
                         organizationId,
-                        EventCreateRequest(
-                            organizationId = organizationId,
-                            title = etEventTitle.text.toString(),
-                            description = etEventDescription.text.toString(),
-                            price = etEventPrice.text.toString(),
-                            location = etEventLocation.text.toString(),
-                            entry = eventEntry,
-                            start_time = millis.toString(),
-                            end_time = millis.plus(3600).toString(),
-                        )
+                        map
+//                        EventCreateRequest(
+//                            organizationId = organizationId,
+//                            title = etEventTitle.text.toString(),
+//                            description = etEventDescription.text.toString(),
+//                            price = etEventPrice.text.toString(),
+//                            location = etEventLocation.text.toString(),
+//                            entry = eventEntry,
+//                            start_time = millis.toString(),
+//                            end_time = millis.plus(3600).toString(),
+//                        )
                     )
                     viewModel.createEvent.collectUIState {
                         findNavController().navigateUp()
@@ -199,7 +224,7 @@ class CreateEventFragment :
         val cal = Calendar.getInstance()
         val hour = cal.get(Calendar.HOUR_OF_DAY)
         val minute = cal.get(Calendar.MINUTE)
-        millis = cal.timeInMillis
+        millis = cal.timeInMillis/1000
 
         val timePickerDialog = TimePickerDialog(
             requireContext(),
